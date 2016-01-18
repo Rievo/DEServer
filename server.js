@@ -430,7 +430,9 @@ app.use(router);
 
 console.log("name: " + user + "   pass: "+ pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' });
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' }, function(){
+	console.log("He hecho el connect");
+});
 
 
 
