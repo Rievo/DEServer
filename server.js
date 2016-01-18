@@ -16,6 +16,19 @@ app.set('views', __dirname + '/views')
 app.set('view engine', 'jade');
 
 
+var pass;
+var user;
+
+process.argv.forEach(function (val, index, array) {
+ 
+  if(index == 2){ //User
+  	user = val;
+  }else if(index == 3){ //Password
+  	pass = val
+  }
+});
+
+
 var router = express.Router();
 
 //mongoose entity vars
@@ -411,9 +424,9 @@ app.use(router);
 
 
 //Connect to database
-mongoose.connect("mongodb://localhost/"+DATABASENAME);
+//mongoose.connect("mongodb://localhost/"+DATABASENAME);
 
-
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor");
 
 //Start listening
 app.listen(port, function() {  
