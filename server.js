@@ -434,7 +434,7 @@ mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagr
 
 
 
-console.log("Puerto: " + app.env.PORT);
+console.log("Puerto: " + process.env.PORT);
 //Start listening
 app.listen((process.env.PORT || 5000), function() {  
   console.log("Node server running");
