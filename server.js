@@ -431,8 +431,8 @@ app.use(router);
 console.log("name: " + user);
 console.log("pass: " + pass);
 
-//mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/"+database,{auth:{authdb:"dbOwner"}});
-mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor")
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/"+database, [], { authMechanism : 'ScramSHA1' }});
+
 
 
 //Start listening
