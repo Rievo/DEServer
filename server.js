@@ -436,7 +436,7 @@ mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagramedito
 
 
 //Start listening
-app.listen(app.get('port'), function() {  
+app.listen((process.env.PORT || 5000), function() {  
   console.log("Node server running");
 });
 
