@@ -430,9 +430,7 @@ app.use(router);
 
 console.log("name: " + user + "   pass: "+ pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' }, function(){
-	console.log("He hecho el connect");
-});
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' });
 
 
 
@@ -447,6 +445,12 @@ app.listen(process.env.PORT, function() {
 //========================================================
 //================    MONGOOSE    ========================
 //========================================================
+
+mongoose.connection.on("open", function(){
+	console.log("We're connected!");
+});
+
+
 mongoose.connection.on("connected", function(){
 	console.log("Connected to database");
 });
