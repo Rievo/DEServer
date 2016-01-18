@@ -453,12 +453,12 @@ mongoose.connection.on("connected", function(){
 	console.log("Connected to database");
 
 });
-
+/*
 mongoose.connection.on("error", function(err){
 	console.log(err);
 	process.exit(1);
 });
-
+*/
 
 mongoose.connection.on("disconnected", function(){
 	console.log("Mongoose disconnected");
