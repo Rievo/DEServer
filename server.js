@@ -31,6 +31,8 @@ process.argv.forEach(function (val, index, array) {
 
 var router = express.Router();
 
+app.set('port', process.env.PORT || 8080);
+
 //mongoose entity vars
 var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
@@ -429,10 +431,12 @@ app.use(router);
 console.log("name: " + user);
 console.log("pass: " + pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/"+database,{auth:{authdb:"dbOwner"}});
+//mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/"+database,{auth:{authdb:"dbOwner"}});
+mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor")
+
 
 //Start listening
-app.listen(function() {  
+app.listen(app.get('port'), function() {  
   console.log("Node server running");
 });
 
