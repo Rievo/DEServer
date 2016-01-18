@@ -31,7 +31,7 @@ process.argv.forEach(function (val, index, array) {
 
 var router = express.Router();
 
-app.set('port', process.env.PORT || 8080);
+app.set('port', process.env.PORT);
 
 //mongoose entity vars
 var Palette = require("./models/palette");
@@ -39,9 +39,6 @@ var Diagram = require("./models/diagram");
 
 
 var database = "diagrameditor";
-
-//var port = 8080;
-
 
 
 //========================================================
@@ -418,6 +415,7 @@ router.put("/diagrams/:dname", function(req, res){
 //Default route
 router.get("*", function(req, res){
 	//res.render("error", {code:404, message:"Upps. Page not found"});
+	endResponse(res);
 });
 
 
@@ -430,8 +428,8 @@ app.use(router);
 
 console.log("name: " + user + "   pass: "+ pass);
 
-//mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' });
-mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' });
+//mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
 
 
 console.log("Puerto: " + process.env.PORT);
@@ -458,7 +456,7 @@ mongoose.connection.on("connected", function(){
 
 mongoose.connection.on("error", function(err){
 	console.log(err);
-	process.exit(1);
+	//process.exit(1);
 });
 
 
