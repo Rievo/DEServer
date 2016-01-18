@@ -428,9 +428,8 @@ app.use(router);
 
 console.log("name: " + user + "   pass: "+ pass);
 
-//mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor", [], { authMechanism : 'ScramSHA1' });
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355", [], { authMechanism : 'ScramSHA1' });
 //mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
-mongoose.connect(os.getenv('MONGODB'));
 
 console.log("Puerto: " + process.env.PORT);
 
@@ -441,22 +440,23 @@ console.log("Puerto: " + process.env.PORT);
 //================    MONGOOSE    ========================
 //========================================================
 
-mongoose.connection.on("open", function(){
+mongoose.connection.once("open", function(){
 	console.log("We're connected!");
-});
-
-
-mongoose.connection.on("connected", function(){
-	console.log("Connected to database");
-		//Start listening
+			//Start listening
 	app.listen(process.env.PORT, function() {  
 	  console.log("Node server running");
 	});
 });
 
+
+mongoose.connection.on("connected", function(){
+	console.log("Connected to database");
+
+});
+
 mongoose.connection.on("error", function(err){
 	console.log(err);
-	//process.exit(1);
+	process.exit(1);
 });
 
 
