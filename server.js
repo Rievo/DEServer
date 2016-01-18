@@ -36,7 +36,7 @@ var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
 
 
-var DATABASENAME = "DiagramEditor";
+var DATABASENAME = "diagrameditor";
 
 var port = 8080;
 
