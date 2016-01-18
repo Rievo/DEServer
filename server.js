@@ -435,10 +435,7 @@ mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagramedito
 
 
 console.log("Puerto: " + process.env.PORT);
-//Start listening
-app.listen(process.env.PORT, function() {  
-  console.log("Node server running");
-});
+
 
 
 
@@ -453,6 +450,10 @@ mongoose.connection.on("open", function(){
 
 mongoose.connection.on("connected", function(){
 	console.log("Connected to database");
+		//Start listening
+	app.listen(process.env.PORT, function() {  
+	  console.log("Node server running");
+	});
 });
 
 mongoose.connection.on("error", function(err){
@@ -461,8 +462,8 @@ mongoose.connection.on("error", function(err){
 });
 
 
-mongoose.connection.on("disconnected", function(call){
-	console.log("Mongoose disconnected: "+call);
+mongoose.connection.on("disconnected", function(){
+	console.log("Mongoose disconnected");
 });
 
 
