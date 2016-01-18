@@ -461,8 +461,8 @@ mongoose.connection.on("error", function(err){
 });
 
 
-mongoose.connection.on("disconnected", function(){
-	console.log("Mongoose disconnected");
+mongoose.connection.on("disconnected", function(call){
+	console.log("Mongoose disconnected: "+call);
 });
 
 
