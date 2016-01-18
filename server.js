@@ -38,7 +38,7 @@ var Diagram = require("./models/diagram");
 
 var DATABASENAME = "diagrameditor";
 
-var port = 8080;
+//var port = 8080;
 
 
 
@@ -429,11 +429,11 @@ app.use(router);
 console.log("name: " + user);
 console.log("pass: " + pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/diagrameditor",{auth:{authdb:"admin"}});
+mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355/"+database,{auth:{authdb:"dbOwner"}});
 
 //Start listening
-app.listen(port, function() {  
-  console.log("Node server running on http://localhost:"+port);
+app.listen(function() {  
+  console.log("Node server running");
 });
 
 
