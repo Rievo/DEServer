@@ -31,7 +31,7 @@ process.argv.forEach(function (val, index, array) {
 
 var router = express.Router();
 
-app.set('port', process.env.PORT);
+//app.set('port', 8080);
 
 //mongoose entity vars
 var Palette = require("./models/palette");
@@ -424,14 +424,15 @@ app.use(router);
 
 
 //Connect to database
-//mongoose.connect("mongodb://localhost/"+DATABASENAME);
+var DATABASENAME = "DiagramEditor";
+mongoose.connect("mongodb://localhost/"+DATABASENAME);
 
 console.log("name: " + user + "   pass: "+ pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355", [], { authMechanism : 'ScramSHA1' });
+//mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355", [], { authMechanism : 'ScramSHA1' });
 //mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
 
-console.log("Puerto: " + process.env.PORT);
+//console.log("Puerto: " + process.env.PORT);
 
 
 
@@ -442,8 +443,9 @@ console.log("Puerto: " + process.env.PORT);
 
 mongoose.connection.once("open", function(){
 	console.log("We're connected!");
-			//Start listening
-	app.listen(process.env.PORT, function() {  
+			
+		//Start listening
+	app.listen(process.env.PORT || 8080, function() {  
 	  console.log("Node server running");
 	});
 });
@@ -453,12 +455,13 @@ mongoose.connection.on("connected", function(){
 	console.log("Connected to database");
 
 });
-/*
+
+
+
 mongoose.connection.on("error", function(err){
-	console.log(err);
 	process.exit(1);
 });
-*/
+
 
 mongoose.connection.on("disconnected", function(){
 	console.log("Mongoose disconnected");
