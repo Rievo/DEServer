@@ -12,7 +12,8 @@
     "mongoose": "~3.6.11",
     "method-override": "^2.1.2",
     "body-parser": "*",
-    "jade": "*"
+    "jade": "*",
+    "mongodb-uri" :"*"
   },
   "devDependencies": {},
   "engines": {
