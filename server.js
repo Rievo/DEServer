@@ -432,55 +432,40 @@ app.use(router);
 var port = process.env.PORT || 8080;
 console.log("Port: "+ port);
 
+
+//Connection events
 mongoose.connection.once("open", function(){
-	console.log("We're connected!");
+	console.log("We're connected! Start listening...");
 			
 	//Start listening
-	console.log("port: "+ port);
 	app.listen(port, function() {  
-	  console.log("Node server running");
+	  console.log("Node server running, listening on port " +port);
 	});
 });
 
 mongoose.connection.on("error", function(err){
 	console.log("Error");
-	//console.error.bind(console, "Connection error");
+	mongoose.connection.close();
 	process.exit(1);
 });
 
 
 mongoose.connection.on("disconnected", function(){
 	console.log("Mongoose disconnected");
+	mongoose.connection.close();
 });
-
-
-
-
-
-
-//Connect to database
-//var DATABASENAME = "DiagramEditor";
-//mongoose.connect("mongodb://localhost/"+DATABASENAME);
-
-console.log("name: " + user + "   pass: "+ pass);
 
 var str = "mongodb://" +user+":"+pass + "@ds047865.mongolab.com:47865/diagrameditor";
-/*
-var options = { server: { socketOptions: { keepAlive: 1, connectTimeoutMS: 30000 } }, 
-                replset: { socketOptions: { keepAlive: 1, connectTimeoutMS : 30000 } } ,
-                authMechanism : "ScramSHA1"};  */
 
-var options = {authMechanism : 'ScramSHA1'};
+var options = {authMechanism: 'ScramSHA1'};  
 
-var mongooseUri = uriUtil.formatMongoose(str);             
+var mongooseUri = uriUtil.formatMongoose(str);    
 
-//mongoose.connect(str, [], { authMechanism : 'ScramSHA1' });
-//mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
-mongoose.connect(str, options, function(err){
-	console.log("Error + " + err);
+mongoose.connect(mongooseUri, options, function(err){
+	if(err){
+		cosole.log("Error: "+ err);
+	}
 });
-
-//console.log("Puerto: " + process.env.PORT);
 
 
 
