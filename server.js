@@ -429,7 +429,10 @@ var DATABASENAME = "DiagramEditor";
 
 console.log("name: " + user + "   pass: "+ pass);
 
-mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355", [], { authMechanism : 'ScramSHA1' });
+var str = "mongodb://" +user+":"+pass + "@ds047865.mongolab.com:47865/diagrameditor";
+console.log("--> "+ str);
+
+mongoose.connect(str, [], { authMechanism : 'ScramSHA1' });
 //mongoose.connect("mongodb://rievo:rievo@ds047355.mongolab.com:47355/diagrameditor", [], {authMechanism : 'ScramSHA1' });
 
 //console.log("Puerto: " + process.env.PORT);
@@ -441,11 +444,14 @@ mongoose.connect("mongodb://"+user+":"+pass +"@ds047355.mongolab.com:47355", [],
 //================    MONGOOSE    ========================
 //========================================================
 
+var port = process.env.PORT || 8080;
+
 mongoose.connection.once("open", function(){
 	console.log("We're connected!");
 			
-		//Start listening
-	app.listen(process.env.PORT || 8080, function() {  
+	//Start listening
+	console.log("port: "+ port);
+	app.listen(port, function() {  
 	  console.log("Node server running");
 	});
 });
