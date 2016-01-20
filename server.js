@@ -45,6 +45,13 @@ var Diagram = require("./models/diagram");
 var database = "diagrameditor";
 
 
+var dir = './tmp';
+
+if (!fs.existsSync(dir)){
+	fs.mkdirSync(dir);
+}
+
+
 //========================================================
 //==============        Basic route      =================
 //========================================================
@@ -416,8 +423,16 @@ router.put("/diagrams/:dname", function(req, res){
 //=================    JSON EXPORTER   ===================
 //========================================================
 router.post("/exporter", function(req, res){
-	console.log("PUT /exporter \n" + req.body);
-	var text = req.body.text;
+
+	if(req.query.json === "true"){
+
+	}else{
+		
+
+		console.log("PUT /exporter \n");
+
+
+		var text = req.body.text;
 
 	/*res.set({"Content-Disposition":"attachment; filename=exported.json"});
 	res.send(text);
@@ -425,36 +440,53 @@ router.post("/exporter", function(req, res){
 	endResponse(res);*/
 
 	//Create temp file for that content
-	var random = Math.getRandomInt(1000,999999999);
-	var tempFilename = "/tmp/input"+random +".xml";
+	var min = 0;
+	var max = 999999999;
+	var random =Math.random() * (max - min) + min;
+	var tempFilename = __dirname +"/tmp/input"+random +".xml";
+	console.log("tempFilename: "+ tempFilename);
 
 	fs.writeFile(tempFilename, text, function(err){
 		if(err){
-			console.log("Error creating file.\n");
+			console.log("Error :  "+ err);
 		}else{
-			var command = "java -jar exporter.jar "+tempFilename + " output"+random+".json";
-			var cp = childProcess.exec(command , function(error, stdout, stderr){
 
+			var outFile = __dirname +"/tmp/output"+random +".json";
+			var command = "java -jar exporter.jar "+tempFilename + " " + outFile;
+
+
+			var cp = childProcess.exec(command , function(error, stdout, stderr){
 				console.log("stdout: " + stdout);
 				console.log("stderr: " + stderr);
 				if(error){
 					console.log("error: " + error);
 				}else{
 					console.log("jsonFile created :D");
-					
+
 				}
 			});
 
 			cp.on("exit", function(code){
-				endResponse(res);
+
+				res.set({"Content-Disposition":"attachment; filename=exported.json"});
+				res.sendFile(outFile);
+				try{
+					fs.unlinkSync(tempFilename);
+					fs.unlinkSync(outFile);
+				}catch(err){
+					//endResponse(res);
+				}finally{
+					endResponse(res);
+				}
+			
 			});
+
+			
 		}
 	});
+}
 
-
-
-
-	//endResponse(res);
+//endResponse(res);
 });
 
 
