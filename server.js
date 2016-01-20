@@ -1,15 +1,16 @@
 var express = require("express"),  
-    app = express(),
-    bodyParser  = require("body-parser"),
-    methodOverride = require("method-override");
-    mongoose = require('mongoose'),
-    uriUtil = require('mongodb-uri');;
+app = express(),
+bodyParser  = require("body-parser"),
+methodOverride = require("method-override");
+mongoose = require('mongoose'),
+uriUtil = require('mongodb-uri');;
 
-    var fs = require('fs');
+var fs = require('fs');
+var path = require("path");
 
 var childProcess = require('child_process');
 
-   
+
 var path = require('path');
 app.use(bodyParser.urlencoded({ extended: false }));  
 app.use(bodyParser.json());  
@@ -23,7 +24,7 @@ var pass;
 var user;
 
 process.argv.forEach(function (val, index, array) {
- 
+
   if(index == 2){ //User
   	user = val;
   }else if(index == 3){ //Password
@@ -423,20 +424,35 @@ router.post("/exporter", function(req, res){
 
 	endResponse(res);*/
 
-	var cp = childProcess.exec("java -jar exporter.jar", function(error, stdout, stderr){
+	//Create temp file for that content
+	var random = Math.getRandomInt(1000,999999999);
+	var tempFilename = "/tmp/input"+random +".xml";
 
-		console.log("stdout: " + stdout);
-		console.log("stderr: " + stderr);
-		if(error){
-			console.log("error: " + error);
+	fs.writeFile(tempFilename, text, function(err){
+		if(err){
+			console.log("Error creating file.\n");
 		}else{
+			var command = "java -jar exporter.jar "+tempFilename + " output"+random+".json";
+			var cp = childProcess.exec(command , function(error, stdout, stderr){
 
+				console.log("stdout: " + stdout);
+				console.log("stderr: " + stderr);
+				if(error){
+					console.log("error: " + error);
+				}else{
+					console.log("jsonFile created :D");
+					
+				}
+			});
+
+			cp.on("exit", function(code){
+				endResponse(res);
+			});
 		}
 	});
 
-	cp.on("exit", function(code){
-		endResponse(res);
-	});
+
+
 
 	//endResponse(res);
 });
@@ -474,10 +490,10 @@ console.log("Port: "+ port);
 //Connection events
 mongoose.connection.once("open", function(){
 	console.log("We're connected! Start listening...");
-			
+
 	//Start listening
 	app.listen(port, function() {  
-	  console.log("Node server running, listening on port " +port);
+		console.log("Node server running, listening on port " +port);
 	});
 });
 
