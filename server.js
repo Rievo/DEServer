@@ -5,7 +5,9 @@ var express = require("express"),
     mongoose = require('mongoose'),
     uriUtil = require('mongodb-uri');;
 
-var child_process = require('child_process');
+    var fs = require('fs');
+
+var childProcess = require('child_process');
 
    
 var path = require('path');
@@ -410,6 +412,37 @@ router.put("/diagrams/:dname", function(req, res){
 
 
 //========================================================
+//=================    JSON EXPORTER   ===================
+//========================================================
+router.post("/exporter", function(req, res){
+	console.log("PUT /exporter \n" + req.body);
+	var text = req.body.text;
+
+	/*res.set({"Content-Disposition":"attachment; filename=exported.json"});
+	res.send(text);
+
+	endResponse(res);*/
+
+	var cp = childProcess.exec("", function(error, stdout, stderr){
+		if(error){
+			
+		}
+	});
+
+	cp.on("exit", function(code){
+
+	});
+
+	//endResponse(res);
+});
+
+
+
+router.get("/exporter", function(req, res){
+	res.render("exporter");
+});
+
+//========================================================
 //=================    Default route   ===================
 //========================================================
 
@@ -463,7 +496,7 @@ var mongooseUri = uriUtil.formatMongoose(str);
 
 mongoose.connect(mongooseUri, options, function(err){
 	if(err){
-		cosole.log("Error: "+ err);
+		console.log("Error: "+ err);
 	}
 });
 
