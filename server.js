@@ -428,7 +428,7 @@ router.post("/exporter", function(req, res){
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
 		if(error){
-			
+			console.log("error: " + error);
 		}else{
 
 		}
