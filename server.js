@@ -423,7 +423,7 @@ router.post("/exporter", function(req, res){
 
 	endResponse(res);*/
 
-	var cp = childProcess.exec("java -jar exporter.jar", function(error, stdout, stderr){
+	var cp = childProcess.exec("java -v", function(error, stdout, stderr){
 
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
