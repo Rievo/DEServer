@@ -95,20 +95,25 @@ function endResponse(res){
 //====================    Palettes   =====================
 //========================================================
 router.get("/palettes", function(req, res){
-	console.log("GET /palettes")
+	console.log("GET /palettes");
 
-	Palette.find({}, function(err, palettes){
-		if(err){
-			console.log("Error: "+err);
-		}
+	if(req.query.json === "true"){
 
-		if(req.query.json ==="true"){
-			sendJsonResponse(res, palettes);
-		}else{
-			//Cargar la web
-			endResponse(res);
-		}
-	});
+		Palette.find({}, function(err, palettes){
+			if(err){
+				console.log("Error: "+err);
+			}
+
+			if(req.query.json ==="true"){
+				sendJsonResponse(res, palettes);
+			}else{
+				//Cargar la web
+				endResponse(res);
+			}
+		});
+	}else{
+		res.render("addPalette");
+	}
 });
 
 
