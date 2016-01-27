@@ -60,8 +60,8 @@ router.get('/', function(req, res) {
 	console.log("/");
 	var ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
 	console.log("ip: " + req.ip)
-	//res.render("index");
-	endResponse(res);
+	res.render("index");
+	//endResponse(res);
 });
 
 
