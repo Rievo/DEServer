@@ -35,6 +35,8 @@ process.argv.forEach(function (val, index, array) {
 
 var router = express.Router();
 
+app.use(express.static('public'));
+
 //app.set('port', 8080);
 
 //mongoose entity vars
@@ -628,6 +630,11 @@ router.post("/exporter", function(req, res){
 
 router.get("/exporter", function(req, res){
 	res.render("exporter");
+});
+
+
+router.get("/jsonTest", function(req, res){
+	sendJsonResponse(res,  {code:200, msg:"Diagram removed"});
 });
 
 //========================================================
