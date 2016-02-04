@@ -1,0 +1,126 @@
+{"name" : "DFAAutomaton",
+ "classes" : [
+  {
+    "name" : "Automaton",
+    "abstract" : "false",
+    "attributes" : [
+    {
+      "name" : "name",
+      "type" : "EString",
+      "min" : "1",
+      "max" : "1",
+      "default" : "null"
+    }
+    ],
+    "references" : [
+    {
+      "name" : "states",
+      "containment" : "true",
+      "target" : "State",
+      "opposite" : "null",
+      "min" : "0",
+      "max" : "-1"
+    },
+    {
+      "name" : "transitions",
+      "containment" : "true",
+      "target" : "Transition",
+      "opposite" : "null",
+      "min" : "0",
+      "max" : "-1"
+    },
+    {
+      "name" : "alphabet",
+      "containment" : "true",
+      "target" : "AlphabetSymbol",
+      "opposite" : "null",
+      "min" : "0",
+      "max" : "-1"
+    }
+    ]
+  },
+  {
+    "name" : "AlphabetSymbol",
+    "abstract" : "false",
+    "attributes" : [
+    {
+      "name" : "symbol",
+      "type" : "EString",
+      "min" : "1",
+      "max" : "1",
+      "default" : "null"
+    }
+    ],
+    "references" : [
+    ]
+  },
+  {
+    "name" : "State",
+    "abstract" : "false",
+    "attributes" : [
+    {
+      "name" : "name",
+      "type" : "EString",
+      "min" : "1",
+      "max" : "1",
+      "default" : "null"
+    },
+    {
+      "name" : "isInitial",
+      "type" : "EBoolean",
+      "min" : "1",
+      "max" : "1",
+      "default" : "false"
+    },
+    {
+      "name" : "isFinal",
+      "type" : "EBoolean",
+      "min" : "1",
+      "max" : "1",
+      "default" : "false"
+    }
+    ],
+    "references" : [
+    {
+      "name" : "incoming",
+      "containment" : "false",
+      "target" : "Transition",
+      "opposite" : "to",
+      "min" : "0",
+      "max" : "-1"
+    }
+    ]
+  },
+  {
+    "name" : "Transition",
+    "abstract" : "false",
+    "attributes" : [
+    ],
+    "references" : [
+    {
+      "name" : "from",
+      "containment" : "false",
+      "target" : "State",
+      "opposite" : "null",
+      "min" : "1",
+      "max" : "1"
+    },
+    {
+      "name" : "to",
+      "containment" : "false",
+      "target" : "State",
+      "opposite" : "incoming",
+      "min" : "1",
+      "max" : "1"
+    },
+    {
+      "name" : "symbol",
+      "containment" : "false",
+      "target" : "AlphabetSymbol",
+      "opposite" : "null",
+      "min" : "0",
+      "max" : "1"
+    }
+    ]
+  }
+]}

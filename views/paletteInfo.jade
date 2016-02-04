@@ -1,0 +1,17 @@
+block content
+	h1 Palette
+	p Name: #{name}
+
+form#formRemovePalette(name="removePalette",method="delete",action="/palettes/#{name}")
+		button#btnSubmit(type="submit") Delete
+
+
+//Content
+
+textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
+
+
+br
+a(href="/palettes") Go to palettes
+br
+a(href="/") Back to index

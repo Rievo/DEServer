@@ -1,0 +1,19 @@
+h1 Showing Ecores
+
+div Add Ecore
+	form#formUpdateFile(name="addEcore",method="post",action="/ecores")
+		input#inputName(type="text", placeholder="name", name="name")
+		br
+		textarea#text(name="content", cols="100", rows="15")
+		br
+		button#btnSubmit(type="submit") submit
+
+
+div Showing ecores
+	ul
+		each ecore, i in ecorelist
+			li
+				a(href="/ecores/#{ecore.name}") #{ecore.name}
+
+	p
+	a(href="/") Back to index

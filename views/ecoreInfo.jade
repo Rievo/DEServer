@@ -1,0 +1,17 @@
+block content
+	h1 Ecore
+	p Name: #{name}
+
+form#formRemoveEcore(name="removeEcore",method="delete",action="/ecores/#{name}")
+		button#btnSubmit(type="submit") Delete
+
+
+//Content
+
+textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
+
+
+br
+a(href="/ecores") Go to ecores
+br
+a(href="/") Back to index

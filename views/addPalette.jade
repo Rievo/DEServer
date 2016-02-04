@@ -7,3 +7,13 @@ div Add Palete
 		textarea#text(name="content", cols="100", rows="20")
 		br
 		button#btnSubmit(type="submit") submit
+
+
+div Showing palettes
+	ul
+		each palette, i in palettelist
+			li
+				a(href="/palettes/#{palette.name}") #{palette.name}
+
+	p
+	a(href="/") Back to index

@@ -40,7 +40,7 @@ var router = express.Router();
 //mongoose entity vars
 var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
-
+var Ecore = require("./models/ecore");
 
 var database = "diagrameditor";
 
@@ -97,7 +97,7 @@ function endResponse(res){
 router.get("/palettes", function(req, res){
 	console.log("GET /palettes");
 
-	if(req.query.json === "true"){
+	//if(req.query.json === "true"){
 
 		Palette.find({}, function(err, palettes){
 			if(err){
@@ -108,12 +108,14 @@ router.get("/palettes", function(req, res){
 				sendJsonResponse(res, palettes);
 			}else{
 				//Cargar la web
-				endResponse(res);
+				res.render("addPalette",{
+					palettelist:palettes
+				});
 			}
 		});
-	}else{
-		res.render("addPalette");
-	}
+	//}else{
+	//	
+	//}
 });
 
 
@@ -171,7 +173,10 @@ router.get("/palettes/:pname", function(req,res){
 			if(req.query.json === "true"){
 				sendJsonResponse(res, {code:200, body:palette});
 			}else{
-				endResponse(res);
+				res.render("paletteInfo",{
+					name:palette.name,
+					content:palette.content
+				});
 			}
 		}
 	});
@@ -262,6 +267,131 @@ router.put("/palettes/:pname", function(req, res){
 	});
 });
 
+//========================================================
+//====================     eCores    =====================
+//========================================================
+router.get("/ecores", function(req, res){
+	console.log("GET /ecores");
+		Ecore.find({}, function(err, ecores){
+			if(err){
+				console.log("Error: "+err);
+			}
+
+			if(req.query.json ==="true"){
+				sendJsonResponse(res, ecores);
+			}else{
+				//Cargar la web
+				res.render("ecoreList",{
+					ecorelist:ecores
+				});
+			}
+		});
+});
+
+
+router.post("/ecores", function(req, res){
+	//a partir del ? vienen los parámetros
+
+	var name = req.body.name;
+	var content = req.body.content;
+
+	if(name != null) {
+		var newEcore= Ecore({
+			name: name.toLowerCase(),
+			content: content
+		});
+
+		newEcore.save(function(err){
+			if(err){
+				if(req.query.json === "true"){
+					console.log("Adding error: " + err);
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}
+			}else{
+				console.log("Ecore añadido");
+				//todo bien, devolvemos añadido correctamente
+				if(req.query.json === "true"){
+					sendJsonResponse(res, {code:200, msg:"ecore added properly"});
+				}else{
+					res.redirect("/ecores");
+					//endResponse(res);
+				}
+
+			}
+		});
+	}
+});
+//Get a stored ecore
+router.get("/ecores/:ename", function(req,res){
+	console.log("GET /ecores/" + req.params.ename.toLowerCase());
+
+	Ecore.findOne({name:req.params.ename.toLowerCase()}, function(err, ecore){
+		if(err){
+			if(req.query.json === "true"){
+				sendJsonError(res, {code: 301, msg:err});
+			}else{
+				//cargar página de error
+				endResponse(res);
+			}
+		}else{
+			if(req.query.json === "true"){
+				sendJsonResponse(res, {code:200, body:ecore});
+			}else{
+				res.render("ecoreInfo",{
+					name:ecore.name,
+					content:ecore.content
+				});
+			}
+		}
+	});
+});
+
+//Remove an ecore
+router.delete("/ecores/:ename", function(req, res){
+	console.log("DELETE /ecores/"+ req.params.ename.toLowerCase());
+
+	Ecore.findOne({name:req.params.ename.toLowerCase()}, function(err, ecore){
+
+		if(ecore){
+			ecore.remove(function(err, pal){
+				console.log("--->" +err);
+				console.log("--->" + pal);
+
+				if(err){
+					//Error on removal
+					if(req.query.json === "true"){
+						sendJsonError(res, {code: 302, msg: err});
+					}else{
+						//Load error page
+						endResponse(res);
+					}
+				}else{
+					//Removing has work
+					if(req.query.json === "true"){
+						console.log("ecore removed")
+						sendJsonResponse(res, {code:200, msg:"Ecore removed"});
+					}else{
+						//Load web
+						//endResponse(res);
+						res.render("ecoreList");
+					}
+				}
+			});
+		}else{
+			console.log("Ecore doesn't exists");
+			//El ecoer con ese nombre no existe, devolvemos error
+			if(req.query.json === "true"){
+				sendJsonError(res, {code: 301, msg:"Ecore doesn't exist"});
+			}else{
+				//Load web
+				endResponse(res);
+			}
+		}
+	});
+});
 
 //========================================================
 //====================    Diagrams   =====================
