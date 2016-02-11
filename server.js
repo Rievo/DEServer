@@ -296,6 +296,17 @@ router.post("/ecores", function(req, res){
 
 	var name = req.body.name;
 	var content = req.body.content;
+	var autogenerateGrapicRStr = req.body.autogenerate;
+
+	var generate = false;
+
+
+	if(autogenerateGrapicRStr === "on"){
+		generate = true;
+	}else{
+		generate = false;
+	}
+	
 
 	if(name != null) {
 		var newEcore= Ecore({
@@ -314,6 +325,17 @@ router.post("/ecores", function(req, res){
 				}
 			}else{
 				console.log("Ecore añadido");
+
+				writeEcoreFileToFolder(newEcore);
+
+				parseEcoreToJSON(newEcore);
+
+				if(generate == true){
+					parseEcoreToGraphicR(newEcore);
+				}else{
+					console.log("No se ha generado el graphicR")
+				}
+
 				//todo bien, devolvemos añadido correctamente
 				if(req.query.json === "true"){
 					sendJsonResponse(res, {code:200, msg:"ecore added properly"});
@@ -326,6 +348,45 @@ router.post("/ecores", function(req, res){
 		});
 	}
 });
+
+function writeEcoreFileToFolder(ecore){
+	var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
+
+	fs.writeFile(tempFilename, ecore.content, function(err){
+		if(err){
+			console.log("Error :  "+ err);
+		}else{
+			console.log("fichero ecore guardado correctamente");
+		}
+	});
+}
+
+function parseEcoreToJSON (ecore){
+
+	console.log("Voy a hacer el parsetojson");
+
+	var sourceFile = __dirname +"/files/ecores/"+ecore.name +".ecore";
+	var outFile = __dirname +"/files/jsons/"+ecore.name +".json";
+	var command = "java -jar exporter.jar "+sourceFile + " " + outFile;
+
+
+	var cp = childProcess.exec(command , function(error, stdout, stderr){
+		console.log("stdout: " + stdout);
+		console.log("stderr: " + stderr);
+		if(error){
+			console.log("error: " + error);
+		}else{
+			console.log("jsonFile created :D");
+
+		}
+	});
+
+}
+
+function parseEcoreToGraphicR (ecore){
+
+}
+
 //Get a stored ecore
 router.get("/ecores/:ename", function(req,res){
 	console.log("GET /ecores/" + req.params.ename.toLowerCase());
