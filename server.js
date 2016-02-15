@@ -466,6 +466,42 @@ router.post("/ecores/:ename/delete", function(req, res){
 });
 
 //========================================================
+//====================    JSON   =====================
+//========================================================
+router.get("/jsons/:name", function(req, res){
+	console.log("GET /jsons/", req.params.name.toLowerCase().replace(/ /g,''));
+
+	//Abro el json que se llama así
+	//Devuelvo un json con content el contenido del fichero
+
+	//if(req.query.json === "true"){
+		console.log("Trying to read file: " + "/files/jsons/"+req.params.name.toLowerCase()+".json")
+		fs.readFile("./files/jsons/"+req.params.name.toLowerCase()+".json" ,'utf8', function (err,data) {
+
+			var content = data;
+
+			//remove \n
+			//content = content.replace('\n','');
+			//content = content.replace('\"','"');
+
+			  if (err) {
+			    console.log("No se encuentra el fichero: "+err);
+			  }else{
+			  	console.log("Fichero encontrado, devolviendo datos");
+			  	//console.log(content);
+			  	sendJsonResponse(res, {code:200, body:content});
+			  }
+	  
+		});				
+	//}else{
+				//Load web
+				
+	//}
+
+	
+});
+
+//========================================================
 //====================    Diagrams   =====================
 //========================================================
 //Get all diagrams
