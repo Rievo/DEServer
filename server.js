@@ -356,8 +356,9 @@ function writeEcoreFileToFolder(ecore){
 	console.log("ecore route: "+ tempFilename);
 
 	fs.writeFile(tempFilename, ecore.content, function(err){
+		console.log("vengo de intentar escribir. Err: "+err);
 		if(err){
-			console.log("Error :  "+ err);
+			console.log("Error escritura:  "+ err);
 		}else{
 			console.log("fichero ecore guardado correctamente");
 
@@ -379,7 +380,7 @@ function parseEcoreToJSON (ecore){
 		console.log("stdout: " + stdout);
 		console.log("stderr: " + stderr);
 		if(error){
-			console.log("error: " + error);
+			console.log("Error de salida: " + error);
 		}else{
 			console.log("jsonFile created :D");
 
