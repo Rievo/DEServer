@@ -310,7 +310,7 @@ router.post("/ecores", function(req, res){
 
 	if(name != null) {
 		var newEcore= Ecore({
-			name: name.toLowerCase().replace(/\s+/g, '');,
+			name: name.toLowerCase().replace(/\s+/g, ''),
 			content: content
 		});
 
