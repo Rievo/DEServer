@@ -401,7 +401,14 @@ router.get("/ecores/:ename", function(req,res){
 			}
 		}else{
 			if(req.query.json === "true"){
-				sendJsonResponse(res, {code:200, body:ecore});
+				//Puede que el ecore no exista
+				console.log("ecore: "+ecore);
+				if(ecore == null){
+					sendJsonResponse(res, {code:300 });
+				}else{
+					sendJsonResponse(res, {code:200, body:ecore});
+				}
+				
 			}else{
 				res.render("ecoreInfo",{
 					name:ecore.name,
