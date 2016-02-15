@@ -325,7 +325,7 @@ router.post("/ecores", function(req, res){
 					endResponse(res);
 				}
 			}else{
-				console.log("Ecore añadido");
+				console.log("Ecore añadido a la base de datos");
 
 				writeEcoreFileToFolder(newEcore);
 
@@ -352,6 +352,7 @@ router.post("/ecores", function(req, res){
 
 function writeEcoreFileToFolder(ecore){
 	var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
+	console.log("json route: "+ tempFilename);
 
 	fs.writeFile(tempFilename, ecore.content, function(err){
 		if(err){
