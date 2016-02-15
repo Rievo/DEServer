@@ -352,10 +352,14 @@ router.post("/ecores", function(req, res){
 });
 
 function writeEcoreFileToFolder(ecore){
-	var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
-	console.log("ecore route: "+ tempFilename);
+	
+	var name = path.join(__dirname, "/files/ecores/"+ecore.name +".ecore");
 
-	fs.writeFile(tempFilename, ecore.content, function(err){
+	//var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
+	console.log("ecore route: "+ name);
+
+
+	fs.writeFile(name, ecore.content, function(err){
 		console.log("vengo de intentar escribir. Err: "+err);
 		if(err){
 			console.log("Error escritura:  "+ err);
