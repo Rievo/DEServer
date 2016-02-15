@@ -2,7 +2,7 @@ block content
 	h1 Ecore
 	p Name: #{name}
 
-form#formRemoveEcore(name="removeEcore",method="delete",action="/ecores/#{name}")
+form#formRemoveEcore(name="removeEcore",method="post",action="/ecores/#{name}/delete")
 		button#btnSubmit(type="submit") Delete
 
 

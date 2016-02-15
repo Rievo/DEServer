@@ -150,6 +150,7 @@ router.post("/palettes", function(req, res){
 					sendJsonResponse(res, {code:200, msg:"Palette added properly"});
 				}else{
 					//res.redirect("");
+					res.redirect("/palettes");
 					endResponse(res);
 				}
 
@@ -186,7 +187,7 @@ router.get("/palettes/:pname", function(req,res){
 
 
 //Remove a palette
-router.delete("/palettes/:pname", function(req, res){
+router.post("/palettes/:pname/delete", function(req, res){
 	console.log("DELETE /palettes/"+ req.params.pname.toLowerCase());
 
 	Palette.findOne({name:req.params.pname.toLowerCase()}, function(err, palette){
@@ -211,7 +212,7 @@ router.delete("/palettes/:pname", function(req, res){
 						sendJsonResponse(res, {code:200, msg:"Palette removed"});
 					}else{
 						//Load web
-						endResponse(res);
+						res.redirect("/palettes");
 					}
 				}
 			});
@@ -420,12 +421,12 @@ router.get("/ecores/:ename", function(req,res){
 });
 
 //Remove an ecore
-router.delete("/ecores/:ename", function(req, res){
-	console.log("DELETE /ecores/"+ req.params.ename.toLowerCase());
+router.post("/ecores/:ename/delete", function(req, res){
+	console.log("POST /ecores/.../delete"+ req.params.ename.toLowerCase());
 
 	Ecore.findOne({name:req.params.ename.toLowerCase()}, function(err, ecore){
 
-		if(ecore){
+		if(!err){
 			ecore.remove(function(err, pal){
 				console.log("--->" +err);
 				console.log("--->" + pal);
@@ -446,7 +447,7 @@ router.delete("/ecores/:ename", function(req, res){
 					}else{
 						//Load web
 						//endResponse(res);
-						res.render("ecoreList");
+						res.redirect("/ecores");
 					}
 				}
 			});

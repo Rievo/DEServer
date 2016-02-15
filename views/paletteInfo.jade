@@ -2,7 +2,7 @@ block content
 	h1 Palette
 	p Name: #{name}
 
-form#formRemovePalette(name="removePalette",method="delete",action="/palettes/#{name}")
+form#formRemovePalette(name="removePalette",method="post",action="/palettes/#{name}/delete")
 		button#btnSubmit(type="submit") Delete
 
 
