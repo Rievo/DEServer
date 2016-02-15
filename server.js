@@ -43,6 +43,7 @@ app.use(express.static('public'));
 var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
 var Ecore = require("./models/ecore");
+var Json = require("./models/ecore");
 
 var database = "diagrameditor";
 
@@ -352,7 +353,7 @@ router.post("/ecores", function(req, res){
 
 function writeEcoreFileToFolder(ecore){
 	var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
-	console.log("json route: "+ tempFilename);
+	console.log("ecore route: "+ tempFilename);
 
 	fs.writeFile(tempFilename, ecore.content, function(err){
 		if(err){
@@ -370,7 +371,7 @@ function parseEcoreToJSON (ecore){
 	var sourceFile = __dirname +"/files/ecores/"+ecore.name +".ecore";
 	var outFile = __dirname +"/files/jsons/"+ecore.name +".json";
 	var command = "java -jar exporter.jar "+sourceFile + " " + outFile;
-
+	console.log("executing: "+command);
 
 	var cp = childProcess.exec(command , function(error, stdout, stderr){
 		console.log("stdout: " + stdout);
