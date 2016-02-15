@@ -330,7 +330,7 @@ router.post("/ecores", function(req, res){
 
 				writeEcoreFileToFolder(newEcore);
 
-				parseEcoreToJSON(newEcore);
+				//parseEcoreToJSON(newEcore);
 
 				if(generate == true){
 					parseEcoreToGraphicR(newEcore);
@@ -360,6 +360,8 @@ function writeEcoreFileToFolder(ecore){
 			console.log("Error :  "+ err);
 		}else{
 			console.log("fichero ecore guardado correctamente");
+
+			parseEcoreToJSON(newEcore);
 		}
 	});
 }
