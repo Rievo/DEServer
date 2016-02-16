@@ -437,7 +437,7 @@ function saveJSONtoMongodb(jsonfile, name){
 
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
-			name: name.toLowerCase(),
+			name: name,
 			content: str
 		});
 
@@ -507,14 +507,14 @@ router.get("/ecores/:ename", function(req,res){
 
 //Remove an ecore
 router.post("/ecores/:ename/delete", function(req, res){
-	console.log("POST /ecores/.../delete"+ req.params.ename.toLowerCase());
+	console.log("POST /ecores/.../delete"+ req.params.ename);
 
 	Ecore.findOne({name:req.params.ename}, function(err, ecore){
 
 		if(!err){
 			ecore.remove(function(err, pal){
-				console.log("--->" +err);
-				console.log("--->" + pal);
+				c//onsole.log("--->" +err);
+				//console.log("--->" + pal);
 
 				if(err){
 					//Error on removal
@@ -565,14 +565,14 @@ router.post("/ecores/:ename/delete", function(req, res){
 //====================    JSON   =====================
 //========================================================
 router.get("/jsons/:name", function(req, res){
-	console.log("GET /jsons/", req.params.name.toLowerCase().replace(/ /g,''));
+	console.log("GET /jsons/", req.params.name.replace(/ /g,''));
 
 	//Abro el json que se llama así
 	//Devuelvo un json con content el contenido del fichero
 
 	//if(req.query.json === "true"){
-		console.log("Trying to read file: " + "/files/jsons/"+req.params.name.toLowerCase()+".json")
-		fs.readFile("./files/jsons/"+req.params.name.toLowerCase()+".json" ,'utf8', function (err,data) {
+		console.log("Trying to read file: " + "/files/jsons/"+req.params.name+".json")
+		fs.readFile("./files/jsons/"+req.params.name+".json" ,'utf8', function (err,data) {
 
 			var content = data;
 
