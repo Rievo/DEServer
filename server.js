@@ -530,17 +530,21 @@ router.post("/ecores/:ename/delete", function(req, res){
 					//Remove json file
 					Json.findOne({name:req.params.ename}, function(err, json){
 						if(!err){
-							if(req.query.json === "true"){
-								console.log("ecore  & json removed")
-								sendJsonResponse(res, {code:200, msg:"Ecore removed"});
-							}else{
-								//Load web
-							//endResponse(res);
-								res.redirect("/ecores");
-							}
-						}else{
-							console.log("No se ha encontrado el json asociado");
-							sendJsonError(res, {code: 300, msg: err});
+
+							json.remove(function(err, pal){
+								if(!err){
+									if(req.query.json === "true"){
+										console.log("ecore  & json removed")
+										sendJsonResponse(res, {code:200, msg:"Ecore removed"});
+									}else{
+										res.redirect("/ecores");
+									}
+								}else{
+									console.log("No se ha encontrado el json asociado");
+									sendJsonError(res, {code: 300, msg: err});
+								}
+							});
+								
 						}
 					});
 
