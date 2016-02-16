@@ -437,7 +437,7 @@ function saveJSONtoMongodb(jsonfile, name){
 
 		newJson.save(function(err){
 			if(err){
-				console.log("Error añadiendo el json a mongod");
+				console.log("Error añadiendo el json a mongod: "+err);
 				/*if(req.query.json === "true"){
 					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
