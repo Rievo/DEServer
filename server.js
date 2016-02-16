@@ -430,7 +430,7 @@ function saveJSONtoMongodb(jsonfile, name){
 			return console.log("Error leyendo el json" +err);
 		}
 		//Si no hay error, lo añado a mongodb
-		var newJson = JSON({
+		var newJson = Json({
 			name: name.toLowerCase(),
 			content: data
 		});
