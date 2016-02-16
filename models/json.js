@@ -14,6 +14,6 @@ var jsonSchema = new Schema({
 
 
 
-Json = mongoose.model("JSon", ecoreSchema);
+Json = mongoose.model("JSon", jsonSchema);
 module.exports = Json;
 
