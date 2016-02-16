@@ -57,7 +57,7 @@ if (!fs.existsSync(dir)){
 	fs.mkdirSync(dir);
 }
 
-
+/*
 var jsons  = "./tmp/jsons";
 if (!fs.existsSync(jsons)){
 	console.log("Creo "+ jsons);
@@ -80,7 +80,7 @@ var palettef  = "./tmp/palettes";
 if (!fs.existsSync(palettef)){
 	console.log("Creo "+ palettef);
 	fs.mkdirSync(palettef);
-}
+}*/
 
 
 
@@ -383,7 +383,7 @@ router.post("/ecores", function(req, res){
 
 function writeEcoreFileToFolder(ecore){
 	
-	var name = path.join(__dirname, "/tmp/ecores/"+ecore.name +".ecore");
+	var name = path.join(__dirname, "/tmp/"+ecore.name +".ecore");
 
 	//var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
 	console.log("ecore route: "+ name);
@@ -405,8 +405,8 @@ function parseEcoreToJSON (ecore){
 
 	console.log("Voy a hacer el parsetojson");
 
-	var sourceFile = __dirname +"/tmp/ecores/"+ecore.name +".ecore";
-	var outFile = __dirname +"/tmp/jsons/"+ecore.name +".json";
+	var sourceFile = __dirname +"/tmp/"+ecore.name +".ecore";
+	var outFile = __dirname +"/tmp/"+ecore.name +".json";
 	var command = "java -jar exporter.jar "+sourceFile + " " + outFile;
 	console.log("executing: "+command);
 
