@@ -342,7 +342,7 @@ router.post("/ecores", function(req, res){
 
 	if(name != null) {
 		var newEcore= Ecore({
-			name: name.toLowerCase().replace(/\s+/g, ''),
+			name: name.replace(/\s+/g, ''),
 			content: content
 		});
 
@@ -438,7 +438,7 @@ function saveJSONtoMongodb(jsonfile, name){
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
 			name: name.toLowerCase(),
-			content: data
+			content: str
 		});
 
 		newJson.save(function(err){
