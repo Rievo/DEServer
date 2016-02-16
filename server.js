@@ -418,13 +418,13 @@ function parseEcoreToJSON (ecore){
 		}else{
 			console.log("jsonFile created :D");
 			//Recupero ese json y lo añado a mongodb
-			saveJSONtoMongodb(outFile);
+			saveJSONtoMongodb(outFile, ecore.name);
 		}
 	});
 
 }
 
-function saveJSONtoMongodb(jsonfile){
+function saveJSONtoMongodb(jsonfile, name){
 		fs.readFile(jsonfile, 'utf8', function (err,data) {
 		if (err) {
 			return console.log("Error leyendo el json" +err);
