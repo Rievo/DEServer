@@ -10,6 +10,8 @@ var path = require("path");
 
 var childProcess = require('child_process');
 
+var mkdirp = require('mkdirp');
+
 
 var path = require('path');
 app.use(bodyParser.urlencoded({ extended: false }));  
@@ -53,6 +55,28 @@ var dir = './tmp';
 if (!fs.existsSync(dir)){
 	fs.mkdirSync(dir);
 }
+
+
+var files = "./files";
+if (!fs.existsSync(files)){
+	fs.mkdirSync(files);
+}
+
+var jsons  = "./files/jsons";
+if (!fs.existsSync(jsons)){
+	fs.mkdirSync(dir);
+}
+
+var ecoref  = "./files/ecores";
+if (!fs.existsSync(ecoref)){
+	fs.mkdirSync(ecoref);
+}
+
+var diagf  = "./files/diagrams";
+if (!fs.existsSync(diagf)){
+	fs.mkdirSync(diagf);
+}
+
 
 
 //========================================================
