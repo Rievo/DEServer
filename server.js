@@ -53,29 +53,41 @@ var database = "diagrameditor";
 var dir = './tmp';
 
 if (!fs.existsSync(dir)){
+	console.log("Creo "+ dir);
 	fs.mkdirSync(dir);
 }
 
 
 var files = "./files";
 if (!fs.existsSync(files)){
+	console.log("Creo "+ files);
 	fs.mkdirSync(files);
 }
 
 var jsons  = "./files/jsons";
 if (!fs.existsSync(jsons)){
+	console.log("Creo "+ jsons);
 	fs.mkdirSync(jsons);
 }
 
 var ecoref  = "./files/ecores";
 if (!fs.existsSync(ecoref)){
+	console.log("Creo "+ ecoref);
 	fs.mkdirSync(ecoref);
 }
 
 var diagf  = "./files/diagrams";
 if (!fs.existsSync(diagf)){
+	console.log("Creo "+ diagf);
 	fs.mkdirSync(diagf);
 }
+
+var palettef  = "./files/palettes";
+if (!fs.existsSync(palettef)){
+	console.log("Creo "+ palettef);
+	fs.mkdirSync(palettef);
+}
+
 
 
 
