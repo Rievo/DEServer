@@ -58,31 +58,31 @@ if (!fs.existsSync(dir)){
 }
 
 
-var files = "./files";
+var files = "./tmp";
 if (!fs.existsSync(files)){
 	console.log("Creo "+ files);
 	fs.mkdirSync(files);
 }
 
-var jsons  = "./files/jsons";
+var jsons  = "./tmp/jsons";
 if (!fs.existsSync(jsons)){
 	console.log("Creo "+ jsons);
 	fs.mkdirSync(jsons);
 }
 
-var ecoref  = "./files/ecores";
+var ecoref  = "./tmp/ecores";
 if (!fs.existsSync(ecoref)){
 	console.log("Creo "+ ecoref);
 	fs.mkdirSync(ecoref);
 }
 
-var diagf  = "./files/diagrams";
+var diagf  = "./tmp/diagrams";
 if (!fs.existsSync(diagf)){
 	console.log("Creo "+ diagf);
 	fs.mkdirSync(diagf);
 }
 
-var palettef  = "./files/palettes";
+var palettef  = "./tmp/palettes";
 if (!fs.existsSync(palettef)){
 	console.log("Creo "+ palettef);
 	fs.mkdirSync(palettef);
@@ -389,7 +389,7 @@ router.post("/ecores", function(req, res){
 
 function writeEcoreFileToFolder(ecore){
 	
-	var name = path.join(__dirname, "/files/ecores/"+ecore.name +".ecore");
+	var name = path.join(__dirname, "/tmp/ecores/"+ecore.name +".ecore");
 
 	//var tempFilename = __dirname +"/files/ecores/"+ecore.name +".ecore";
 	console.log("ecore route: "+ name);
@@ -411,8 +411,8 @@ function parseEcoreToJSON (ecore){
 
 	console.log("Voy a hacer el parsetojson");
 
-	var sourceFile = __dirname +"/files/ecores/"+ecore.name +".ecore";
-	var outFile = __dirname +"/files/jsons/"+ecore.name +".json";
+	var sourceFile = __dirname +"/tmp/ecores/"+ecore.name +".ecore";
+	var outFile = __dirname +"/tmp/jsons/"+ecore.name +".json";
 	var command = "java -jar exporter.jar "+sourceFile + " " + outFile;
 	console.log("executing: "+command);
 
