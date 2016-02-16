@@ -1,17 +1,21 @@
-block content
-	h1 Ecore
-	p Name: #{name}
+head
+	link(rel='stylesheet', href='/style.css', type="text/css")
+	
+body
 
-form#formRemoveEcore(name="removeEcore",method="post",action="/ecores/#{name}/delete")
-		button#btnSubmit(type="submit") Delete
+	block content
+		h1 Ecore
+		p Name: #{name}
+
+	form#formRemoveEcore(name="removeEcore",method="post",action="/ecores/#{name}/delete")
+			button#btnSubmit(type="submit") Delete
 
 
-//Content
 
-textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
+	textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
 
 
-br
-a(href="/ecores") Go to ecores
-br
-a(href="/") Back to index
+	br
+	a(href="/ecores") Go to ecores
+	br
+	a(href="/") Back to index

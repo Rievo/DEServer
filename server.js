@@ -57,32 +57,6 @@ if (!fs.existsSync(dir)){
 	fs.mkdirSync(dir);
 }
 
-/*
-var jsons  = "./tmp/jsons";
-if (!fs.existsSync(jsons)){
-	console.log("Creo "+ jsons);
-	fs.mkdirSync(jsons);
-}
-
-var ecoref  = "./tmp/ecores";
-if (!fs.existsSync(ecoref)){
-	console.log("Creo "+ ecoref);
-	fs.mkdirSync(ecoref);
-}
-
-var diagf  = "./tmp/diagrams";
-if (!fs.existsSync(diagf)){
-	console.log("Creo "+ diagf);
-	fs.mkdirSync(diagf);
-}
-
-var palettef  = "./tmp/palettes";
-if (!fs.existsSync(palettef)){
-	console.log("Creo "+ palettef);
-	fs.mkdirSync(palettef);
-}*/
-
-
 
 
 //========================================================
@@ -431,10 +405,6 @@ function saveJSONtoMongodb(jsonfile, name){
 		}
 
 		var str = data;
-
-		//str = str.replace("\n", "");
-		//str = str.replace("\"",'"');
-
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
 			name: name,
@@ -444,24 +414,8 @@ function saveJSONtoMongodb(jsonfile, name){
 		newJson.save(function(err){
 			if(err){
 				console.log("Error añadiendo el json a mongod: "+err);
-				/*if(req.query.json === "true"){
-					console.log("Adding error: " + err);
-					sendJsonError(res, {code:300, msg:err});
-				}else{
-					//Cargar la web de error
-					endResponse(res);
-				}*/
 			}else{
 				console.log("JSON añadido a mongodb");
-				//todo bien, devolvemos añadido correctamente
-
-				/*if(req.query.json === "true"){
-					sendJsonResponse(res, {code:200, msg:"Palette added properly"});
-				}else{
-					//res.redirect("");
-					res.redirect("/palettes");
-					endResponse(res);
-				}*/
 
 			}
 		});
@@ -477,7 +431,9 @@ function parseEcoreToGraphicR (ecore){
 router.get("/ecores/:ename", function(req,res){
 	console.log("GET /ecores/" + req.params.ename);
 
-	Ecore.findOne({name:req.params.ename}, function(err, ecore){
+
+	Ecore.findOne({name:req.params.ename}, function(err, ec){
+
 		if(err){
 			if(req.query.json === "true"){
 				sendJsonError(res, {code: 301, msg:err});
@@ -486,20 +442,23 @@ router.get("/ecores/:ename", function(req,res){
 				endResponse(res);
 			}
 		}else{
+			
 			if(req.query.json === "true"){
 				//Puede que el ecore no exista
-				console.log("ecore: "+ecore);
-				if(ecore == null){
+				console.log("ecore: "+req.params.ename);
+				if(ec == null){
 					sendJsonResponse(res, {code:300 });
 				}else{
-					sendJsonResponse(res, {code:200, body:ecore});
+					sendJsonResponse(res, {code:200, body:ec});
 				}
 				
 			}else{
-				res.render("ecoreInfo",{
-					name:ecore.name,
-					content:ecore.content
-				});
+				if(ec != null){
+					res.render("ecoreInfo",{
+						name:ec.name,
+						content:ec.content
+					});
+				}
 			}
 		}
 	});
