@@ -58,12 +58,6 @@ if (!fs.existsSync(dir)){
 }
 
 
-var files = "./tmp";
-if (!fs.existsSync(files)){
-	console.log("Creo "+ files);
-	fs.mkdirSync(files);
-}
-
 var jsons  = "./tmp/jsons";
 if (!fs.existsSync(jsons)){
 	console.log("Creo "+ jsons);
