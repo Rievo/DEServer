@@ -45,7 +45,7 @@ app.use(express.static('public'));
 var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
 var Ecore = require("./models/ecore");
-var Json = require("./models/ecore");
+var Json = require("./models/json");
 
 var database = "diagrameditor";
 
