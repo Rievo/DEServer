@@ -574,30 +574,25 @@ router.get("/jsons/:name", function(req, res){
 	//Abro el json que se llama así
 	//Devuelvo un json con content el contenido del fichero
 
-	//if(req.query.json === "true"){
-		console.log("Trying to read file: " + "/files/jsons/"+req.params.name+".json")
-		fs.readFile("./files/jsons/"+req.params.name+".json" ,'utf8', function (err,data) {
-
-			var content = data;
-
-			//remove \n
-			//content = content.replace('\n','');
-			//content = content.replace('\"','"');
-
-			  if (err) {
-			    console.log("No se encuentra el fichero: "+err);
-			  }else{
-			  	console.log("Fichero encontrado, devolviendo datos");
-			  	//console.log(content);
-			  	sendJsonResponse(res, {code:200, body:content});
-			  }
-	  
-		});				
-	//}else{
+	Json.findOne({name:req.params.name}, function(err, json){
+		if(!err){
+			//json.content
+			if(req.query.json === "true"){
+				console.log("Devolviendo json")
+				sendJsonResponse(res, {code:200, content:json.content});
+			}else{
+				//res.redirect("/ecores");
+				endResponse(res);
+			}
+		}else{
+			if(req.query.json === "true"){
+				sendJsonError(res, {code: 301, msg:"JSON doesn't exist"});
+			}else{
 				//Load web
-				
-	//}
-
+				endResponse(res);
+			}
+		}
+	});
 	
 });
 
