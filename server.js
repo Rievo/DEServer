@@ -528,7 +528,7 @@ router.post("/ecores/:ename/delete", function(req, res){
 					//Removing has work
 
 					//Remove json file
-					Ecore.findOne({name:req.params.ename}, function(err, json){
+					Json.findOne({name:req.params.ename}, function(err, json){
 						if(!err){
 							if(req.query.json === "true"){
 								console.log("ecore  & json removed")
@@ -536,7 +536,7 @@ router.post("/ecores/:ename/delete", function(req, res){
 							}else{
 								//Load web
 							//endResponse(res);
-							res.redirect("/ecores");
+								res.redirect("/ecores");
 							}
 						}else{
 							console.log("No se ha encontrado el json asociado");
