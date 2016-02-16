@@ -64,7 +64,7 @@ if (!fs.existsSync(files)){
 
 var jsons  = "./files/jsons";
 if (!fs.existsSync(jsons)){
-	fs.mkdirSync(dir);
+	fs.mkdirSync(jsons);
 }
 
 var ecoref  = "./files/ecores";
