@@ -429,6 +429,12 @@ function saveJSONtoMongodb(jsonfile, name){
 		if (err) {
 			return console.log("Error leyendo el json" +err);
 		}
+
+		var str = data;
+
+		str = str.replace("\n", "");
+		str = str.replace("\"",'"');
+
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
 			name: name.toLowerCase(),
