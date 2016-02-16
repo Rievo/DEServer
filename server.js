@@ -417,14 +417,50 @@ function parseEcoreToJSON (ecore){
 			console.log("Error de salida: " + error);
 		}else{
 			console.log("jsonFile created :D");
-
+			//Recupero ese json y lo añado a mongodb
+			saveJSONtoMongodb(outFile);
 		}
 	});
 
 }
 
 function saveJSONtoMongodb(jsonfile){
+		fs.readFile(jsonfile, 'utf8', function (err,data) {
+		if (err) {
+			return console.log("Error leyendo el json" +err);
+		}
+		//Si no hay error, lo añado a mongodb
+		var newJson = JSON({
+			name: name.toLowerCase(),
+			content: data
+		});
 
+		newJson.save(function(err){
+			if(err){
+				console.log("Error añadiendo el json a mongod");
+				/*if(req.query.json === "true"){
+					console.log("Adding error: " + err);
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}*/
+			}else{
+				console.log("JSON añadido a mongodb");
+				//todo bien, devolvemos añadido correctamente
+
+				/*if(req.query.json === "true"){
+					sendJsonResponse(res, {code:200, msg:"Palette added properly"});
+				}else{
+					//res.redirect("");
+					res.redirect("/palettes");
+					endResponse(res);
+				}*/
+
+			}
+		});
+			  
+		});
 }
 
 function parseEcoreToGraphicR (ecore){
