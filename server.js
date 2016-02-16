@@ -513,7 +513,7 @@ router.post("/ecores/:ename/delete", function(req, res){
 
 		if(!err){
 			ecore.remove(function(err, pal){
-				c//onsole.log("--->" +err);
+				//onsole.log("--->" +err);
 				//console.log("--->" + pal);
 
 				if(err){
