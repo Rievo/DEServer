@@ -475,9 +475,9 @@ function parseEcoreToGraphicR (ecore){
 
 //Get a stored ecore
 router.get("/ecores/:ename", function(req,res){
-	console.log("GET /ecores/" + req.params.ename.toLowerCase());
+	console.log("GET /ecores/" + req.params.ename);
 
-	Ecore.findOne({name:req.params.ename.toLowerCase()}, function(err, ecore){
+	Ecore.findOne({name:req.params.ename}, function(err, ecore){
 		if(err){
 			if(req.query.json === "true"){
 				sendJsonError(res, {code: 301, msg:err});
@@ -509,7 +509,7 @@ router.get("/ecores/:ename", function(req,res){
 router.post("/ecores/:ename/delete", function(req, res){
 	console.log("POST /ecores/.../delete"+ req.params.ename.toLowerCase());
 
-	Ecore.findOne({name:req.params.ename.toLowerCase()}, function(err, ecore){
+	Ecore.findOne({name:req.params.ename}, function(err, ecore){
 
 		if(!err){
 			ecore.remove(function(err, pal){
@@ -526,14 +526,26 @@ router.post("/ecores/:ename/delete", function(req, res){
 					}
 				}else{
 					//Removing has work
-					if(req.query.json === "true"){
-						console.log("ecore removed")
-						sendJsonResponse(res, {code:200, msg:"Ecore removed"});
-					}else{
-						//Load web
-						//endResponse(res);
-						res.redirect("/ecores");
-					}
+
+					//Remove json file
+					Ecore.findOne({name:req.params.ename}, function(err, json){
+						if(!err){
+							if(req.query.json === "true"){
+								console.log("ecore  & json removed")
+								sendJsonResponse(res, {code:200, msg:"Ecore removed"});
+							}else{
+								//Load web
+							//endResponse(res);
+							res.redirect("/ecores");
+							}
+						}else{
+							console.log("No se ha encontrado el json asociado");
+							sendJsonError(res, {code: 300, msg: err});
+						}
+					});
+
+
+					/**/
 				}
 			});
 		}else{
