@@ -396,7 +396,7 @@ function writeEcoreFileToFolder(ecore){
 		}else{
 			console.log("fichero ecore guardado correctamente");
 
-			parseEcoreToJSON(newEcore);
+			parseEcoreToJSON(ecore);
 		}
 	});
 }
@@ -420,6 +420,10 @@ function parseEcoreToJSON (ecore){
 
 		}
 	});
+
+}
+
+function saveJSONtoMongodb(jsonfile){
 
 }
 
