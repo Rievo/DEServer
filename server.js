@@ -432,8 +432,8 @@ function saveJSONtoMongodb(jsonfile, name){
 
 		var str = data;
 
-		str = str.replace("\n", "");
-		str = str.replace("\"",'"');
+		//str = str.replace("\n", "");
+		//str = str.replace("\"",'"');
 
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
