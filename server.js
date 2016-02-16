@@ -383,13 +383,8 @@ function writeEcoreFileToFolder(ecore){
 	console.log("ecore route: "+ name);
 
 
-	fs.writeFile(name, ecore.content, function(err)
-	/*try{
-		fs.writeFileSync(file, content, 'utf8');
-	}catch(err){
-		console.log("Error escritura:  "+ err);
-	}*/
-	{	console.log("vengo de intentar escribir. Err: "+err);
+	fs.writeFile(name, ecore.content, function(err){	
+		console.log("vengo de intentar escribir. Err: "+err);
 		if(err){
 			console.log("Error escritura:  "+ err);
 		}else{
@@ -397,7 +392,7 @@ function writeEcoreFileToFolder(ecore){
 
 			parseEcoreToJSON(newEcore);
 		}
-	};
+	});
 }
 
 function parseEcoreToJSON (ecore){
