@@ -571,7 +571,8 @@ router.get("/diagrams", function(req, res){
 			sendJsonResponse(res, diagrams);
 		}else{
 			//Cargar la web
-			endResponse(res);
+			//endResponse(res);
+			res.render("diagramList", {diagramList:diagrams});
 		}
 	});
 });
@@ -585,8 +586,8 @@ router.post("/diagrams", function(req, res){
 
 	if(name != null) {
 		var newDiagram = Diagram({
-			name: name.toLowerCase(),
-			content: content.toLowerCase()
+			name: name,
+			content: content
 		});
 
 		newDiagram.save(function(err){
@@ -614,9 +615,9 @@ router.post("/diagrams", function(req, res){
 
 //Get a stored diagram
 router.get("/diagrams/:dname", function(req,res){
-	console.log("GET /diagrams/" + req.params.dname.toLowerCase());
+	console.log("GET /diagrams/" + req.params.dname);
 
-	Diagram.findOne({name:req.params.dname.toLowerCase()}, function(err, diagram){
+	Diagram.findOne({name:req.params.dname}, function(err, diagram){
 		if(err){
 			if(req.query.json === "true"){
 				sendJsonError(res, {code: 301, msg:err});
@@ -636,9 +637,9 @@ router.get("/diagrams/:dname", function(req,res){
 
 //Remove a diagram
 router.delete("/diagrams/:dname", function(req, res){
-	console.log("DELETE /diagrams/"+ req.params.dname.toLowerCase());
+	console.log("DELETE /diagrams/"+ req.params.dname);
 
-	Diagram.findOne({name:req.params.dname.toLowerCase()}, function(err, diagram){
+	Diagram.findOne({name:req.params.dname}, function(err, diagram){
 
 		if(diagram){
 			diagram.remove(function(err){
@@ -676,9 +677,9 @@ router.delete("/diagrams/:dname", function(req, res){
 
 //Update a diagram
 router.put("/diagrams/:dname", function(req, res){
-	console.log("PUT /diagrams/"+req.params.dname.toLowerCase());
+	console.log("PUT /diagrams/"+req.params.dname);
 
-	Diagram.findOne({name:req.params.dname.toLowerCase()}, function(err, diag){
+	Diagram.findOne({name:req.params.dname}, function(err, diag){
 
 		if(diag){
 			//La paleta existe, intentamos actualizarla
