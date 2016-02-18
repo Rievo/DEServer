@@ -582,6 +582,8 @@ router.post("/diagrams", function(req, res){
 	//a partir del ? vienen los parámetros
 	console.log("POST /diagrams");
 	console.log("body: "+req.body);
+	console.log("name: "+req.body.name);
+	console.log("content: "+req.body.content);
 
 	var name = req.body.name;
 	var content = req.body.content;
@@ -612,6 +614,8 @@ router.post("/diagrams", function(req, res){
 				}
 			}
 		});
+	}else{
+		
 	}
 });
 
