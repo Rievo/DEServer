@@ -615,7 +615,7 @@ router.post("/diagrams", function(req, res){
 			}
 		});
 	}else{
-
+		endResponse(res);
 	}
 });
 
