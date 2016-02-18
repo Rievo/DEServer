@@ -135,7 +135,7 @@ router.post("/palettes", function(req, res){
 
 	if(name != null) {
 		var newPalette = Palette({
-			name: name.toLowerCase(),
+			name: name,
 			content: content
 		});
 
@@ -167,9 +167,9 @@ router.post("/palettes", function(req, res){
 
 //Get a stored palette
 router.get("/palettes/:pname", function(req,res){
-	console.log("GET /palettes/" + req.params.pname.toLowerCase());
+	console.log("GET /palettes/" + req.params.pname);
 
-	Palette.findOne({name:req.params.pname.toLowerCase()}, function(err, palette){
+	Palette.findOne({name:req.params.pname}, function(err, palette){
 		if(err){
 			if(req.query.json === "true"){
 				sendJsonError(res, {code: 301, msg:err});
@@ -195,7 +195,7 @@ router.get("/palettes/:pname", function(req,res){
 router.post("/palettes/:pname/delete", function(req, res){
 	console.log("DELETE /palettes/"+ req.params.pname.toLowerCase());
 
-	Palette.findOne({name:req.params.pname.toLowerCase()}, function(err, palette){
+	Palette.findOne({name:req.params.pname}, function(err, palette){
 
 		if(palette){
 			palette.remove(function(err, pal){
@@ -236,9 +236,9 @@ router.post("/palettes/:pname/delete", function(req, res){
 
 //Update a palette
 router.put("/palettes/:pname", function(req, res){
-	console.log("PUT /palettes/"+req.params.pname.toLowerCase());
+	console.log("PUT /palettes/"+req.params.pname);
 
-	Palette.findOne({name:req.params.pname.toLowerCase()}, function(err, palette){
+	Palette.findOne({name:req.params.pname}, function(err, palette){
 
 		if(palette){
 			//La paleta existe, intentamos actualizarla
