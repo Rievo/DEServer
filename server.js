@@ -580,6 +580,8 @@ router.get("/diagrams", function(req, res){
 //Add a new diagram
 router.post("/diagrams", function(req, res){
 	//a partir del ? vienen los parámetros
+	console.log("POST /diagrams");
+	console.log("body: "+req.body);
 
 	var name = req.body.name;
 	var content = req.body.content;
