@@ -584,8 +584,8 @@ router.post("/diagrams", function(req, res){
 
 	//var json = JSON.parse(req.body);
 	console.log(req.body);
-	console.log("name: "+json.name);
-	console.log("content: "+json.content);
+	console.log("name: "+req.name);
+	console.log("content: "+req.content);
 
 	var name = req.body.name;
 	var content = req.body.content;
