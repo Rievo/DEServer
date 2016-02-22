@@ -582,7 +582,7 @@ router.post("/diagrams", function(req, res){
 	//a partir del ? vienen los parámetros
 	console.log("POST /diagrams");
 
-	var json = JSON.parse(jsonString);
+	var json = JSON.parse(req.body);
 	console.log(json);
 	console.log("name: "+json.name);
 	console.log("content: "+json.content);
