@@ -9,6 +9,9 @@ var diagramSchema = new Schema({
 	},
 	content: {
 		type:String
+	},
+	dateString:{
+		type:String
 	}
 });
 
