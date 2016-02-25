@@ -596,7 +596,7 @@ router.post("/diagrams", function(req, res){
 		var newDiagram = Diagram({
 			name: name,
 			content: content,
-			dateString = dateString;
+			dateString : dateString
 		});
 
 		newDiagram.save(function(err){
