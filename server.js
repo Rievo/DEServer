@@ -593,6 +593,7 @@ router.post("/diagrams", function(req, res){
 	var dateString = req.body.dateString;
 
 	var imageData = req.body.imageData;
+	console.log(imageData);
 
 	if(name != null) {
 		var newDiagram = Diagram({
@@ -647,6 +648,20 @@ router.get("/diagrams/:dname", function(req,res){
 				res.render("diagramInfo", {diagram:diagram});
 			}
 		}
+	});
+});
+
+//Get associated image of a diagram
+router.get("/diagrams/:dname/image", function(req,res){
+	console.log("GET /diagrams/" + req.params.dname);
+
+	Diagram.findOne({name:req.params.dname}, function(err, diagram){
+
+		var imageString = diagram.previewImage.data;
+		var decodedImage = new Buffer(imageString, 'base64');
+
+		res.writeHead('200', {'Content-Type': 'image/png'});
+     	res.end(decodedImage,'binary');
 	});
 });
 

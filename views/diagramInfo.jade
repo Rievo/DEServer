@@ -1,7 +1,7 @@
 block content
 	link(rel='stylesheet', href='/style.css', type="text/css")
 	h1 Diagram
-	p Name: #{name}
+	p Name: #{diagram.name}
 
 //form#formRemoveDiagram(name="removeDiagram",method="post",action="/palettes/#{name}/delete")
 //		button#btnSubmit(type="submit") Delete
@@ -9,7 +9,9 @@ block content
 
 //Content
 
-textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
+textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{diagram.content} 
+
+img(id='add-razaoSocial', class='input-img', src='images/add-mono.png')
 
 //Preview
 
