@@ -659,13 +659,13 @@ router.get("/diagrams/:dname/image", function(req,res){
 
 	Diagram.findOne({name:req.params.dname}, function(err, diagram){
 
-		var image = diagram.previewImage.data;
+		var imageStr = diagram.imageString;
 
 		//console.log(image);
 		console.log(image);
-
+		ar decodedImage = new Buffer(imageData, 'base64').toString('binary');
 		res.writeHead('200', {'Content-Type': 'image/png'});
-     	res.end(image,'binary');
+     	res.end(decodedImage,'binary');
 	});
 });
 
