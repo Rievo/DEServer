@@ -592,11 +592,14 @@ router.post("/diagrams", function(req, res){
 	var content = req.body.content;
 	var dateString = req.body.dateString;
 
+	var imageData = req.body.imageData;
+
 	if(name != null) {
 		var newDiagram = Diagram({
 			name: name,
 			content: content,
-			dateString : dateString
+			dateString : dateString,
+			previewImage : {data : imageData, contentType :"image/png"}
 		});
 
 		newDiagram.save(function(err){

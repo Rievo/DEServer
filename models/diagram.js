@@ -12,6 +12,10 @@ var diagramSchema = new Schema({
 	},
 	dateString:{
 		type:String
+	},
+	previewImage:{
+		data:Buffer,
+		contentType:String
 	}
 });
 
