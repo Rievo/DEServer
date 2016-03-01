@@ -601,7 +601,8 @@ router.post("/diagrams", function(req, res){
 			name: name,
 			content: content,
 			dateString : dateString,
-			previewImage : {data : imageData, contentType :"image/png"}
+			imageString : imageData
+			//previewImage : {data : imageData, contentType :"image/png"}
 		});
 
 		newDiagram.save(function(err){
@@ -661,7 +662,7 @@ router.get("/diagrams/:dname/image", function(req,res){
 		var image = diagram.previewImage.data;
 
 		//console.log(image);
-		console.log(diagram);
+		console.log(image);
 
 		res.writeHead('200', {'Content-Type': 'image/png'});
      	res.end(image,'binary');
