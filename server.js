@@ -594,14 +594,14 @@ router.post("/diagrams", function(req, res){
 
 	var imageData = req.body.imageData;
 
-	var decodedImage = new Buffer(imageData, 'base64').toString('binary');
+	//var decodedImage = new Buffer(imageData, 'base64').toString('binary');
 
 	if(name != null) {
 		var newDiagram = Diagram({
 			name: name,
 			content: content,
 			dateString : dateString,
-			previewImage : {data : decodedImage, contentType :"image/png"}
+			previewImage : {data : imageData, contentType :"image/png"}
 		});
 
 		newDiagram.save(function(err){
@@ -654,7 +654,7 @@ router.get("/diagrams/:dname", function(req,res){
 
 //Get associated image of a diagram
 router.get("/diagrams/:dname/image", function(req,res){
-	console.log("GET /diagrams/" + req.params.dname);
+	console.log("GET /diagrams/" + req.params.dname+ "/image" );
 
 	Diagram.findOne({name:req.params.dname}, function(err, diagram){
 
