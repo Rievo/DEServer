@@ -663,7 +663,7 @@ router.get("/diagrams/:dname/image", function(req,res){
 
 		//console.log(image);
 		console.log(image);
-		ar decodedImage = new Buffer(imageData, 'base64').toString('binary');
+		var decodedImage = new Buffer(imageData, 'base64').toString('binary');
 		res.writeHead('200', {'Content-Type': 'image/png'});
      	res.end(decodedImage,'binary');
 	});
