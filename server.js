@@ -593,14 +593,15 @@ router.post("/diagrams", function(req, res){
 	var dateString = req.body.dateString;
 
 	var imageData = req.body.imageData;
-	console.log(imageData);
+
+	var decodedImage = new Buffer(imageData, 'base64').toString('binary');
 
 	if(name != null) {
 		var newDiagram = Diagram({
 			name: name,
 			content: content,
 			dateString : dateString,
-			previewImage : {data : imageData, contentType :"image/png"}
+			previewImage : {data : decodedImage, contentType :"image/png"}
 		});
 
 		newDiagram.save(function(err){
@@ -657,11 +658,13 @@ router.get("/diagrams/:dname/image", function(req,res){
 
 	Diagram.findOne({name:req.params.dname}, function(err, diagram){
 
-		var imageString = diagram.previewImage.data;
-		var decodedImage = new Buffer(imageString, 'base64');
+		var image = diagram.previewImage.data;
+
+		//console.log(image);
+		console.log(diagram);
 
 		res.writeHead('200', {'Content-Type': 'image/png'});
-     	res.end(decodedImage,'binary');
+     	res.end(image,'binary');
 	});
 });
 
