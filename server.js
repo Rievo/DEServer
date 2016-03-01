@@ -643,7 +643,8 @@ router.get("/diagrams/:dname", function(req,res){
 			if(req.query.json === "true"){
 				sendJsonResponse(res, {code:200, body:diagram});
 			}else{
-				endResponse(res);
+				//endResponse(res);
+				res.render("diagramInfo", {diagram:diagram});
 			}
 		}
 	});
