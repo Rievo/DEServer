@@ -533,7 +533,14 @@ router.get("/jsons/:name", function(req, res){
 	//Abro el json que se llama así
 	//Devuelvo un json con content el contenido del fichero
 
-	Json.findOne({name:req.params.name}, function(err, json){
+	if(req.params.name == null){
+		if(req.query.json === "true"){
+			sendJsonError(res, {code: 305, msg:"Name is null"});
+		}else{
+			endResponse(res);
+		}
+	}else{
+		Json.findOne({name:req.params.name}, function(err, json){
 		if(!err){
 			//json.content
 			if(req.query.json === "true"){
@@ -552,6 +559,9 @@ router.get("/jsons/:name", function(req, res){
 			}
 		}
 	});
+	}
+
+	
 	
 });
 
