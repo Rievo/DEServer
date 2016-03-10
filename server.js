@@ -534,6 +534,7 @@ router.get("/jsons/:name", function(req, res){
 	//Devuelvo un json con content el contenido del fichero
 
 	if(req.params.name == null){
+		console.log("req.name == null");
 		if(req.query.json === "true"){
 			sendJsonError(res, {code: 305, msg:"Name is null"});
 		}else{
