@@ -15,8 +15,8 @@ var dataTypeSchema = new Schema({
 		default: Date.now 
 	},
 
-	extends:{
-		type: [String]
+	extend:{
+		type: String
 	},
 	contentKeys:[
 		{
