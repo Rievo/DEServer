@@ -46,7 +46,8 @@ var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
 var Ecore = require("./models/ecore");
 var Json = require("./models/json");
-var Fragment = require("./models/fragment")
+var Fragment = require("./models/fragment");
+var DataType = require("./models/datatype")
 
 var database = "diagrameditor";
 
@@ -908,6 +909,76 @@ router.post("/fragments", function(req, res){
 				//todo bien, devolvemos añadido correctamente
 				if(req.query.json === "true"){
 					sendJsonResponse(res, {code:200, msg:"Fragment added properly"});
+				}else{
+					//res.redirect("");
+					endResponse(res);
+				}
+			}
+		});
+	}else{
+		endResponse(res);
+	}
+});
+
+
+//Get all diagrams
+router.get("/datatypes", function(req, res){
+	console.log("GET /datatypes")
+
+	Fragment.find({}, function(err, datatypes){
+		if(err){
+			console.log("Error: "+err);
+		}
+
+		if(req.query.json ==="true"){
+			sendJsonResponse(res, datatypes);
+		}else{
+			//Cargar la web
+			endResponse(res);
+			//res.render("fragmentList", {fragmentList:datatypes});
+		}
+	});
+});
+
+
+router.post("/datatypes", function(req, res){
+	//a partir del ? vienen los parámetros
+	console.log("POST /datatypes");
+
+	
+	console.log(req.body);
+	console.log("name: "+req.body.name);
+	console.log("content: "+req.body.content);
+	//console.log("domains: " + req.body.domains)
+
+	var name = req.body.name;
+	var content = req.body.content;
+	
+	var ext = req.body.extends;
+	var contentKeys = req.body.contentKeys;
+
+	if(name != null) {
+		var newDataType = DataType({
+			name: name,
+			content: content,
+			extends: ext,
+			contentKeys: contentKeys
+		});
+
+		newDataType.save(function(err){
+			if(err){
+				console.log("Adding error: " + err);
+				if(req.query.json === "true"){
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}
+			}else{
+				console.log("Data type added");
+				//todo bien, devolvemos añadido correctamente
+				if(req.query.json === "true"){
+					sendJsonResponse(res, {code:200, msg:"Data type added properly"});
 				}else{
 					//res.redirect("");
 					endResponse(res);
