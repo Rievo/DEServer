@@ -881,7 +881,7 @@ router.post("/fragments", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	
-	var extends = req.body.extends;
+	var ext = req.body.extends;
 	var domains = req.body.domains;
 	var contentKeys = req.body.contentKeys;
 
@@ -890,7 +890,7 @@ router.post("/fragments", function(req, res){
 			name: name,
 			content: content,
 			domains: domains,
-			extends: extends,
+			extends: ext,
 			contentKeys: contentKeys
 		});
 
