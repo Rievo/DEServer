@@ -11,7 +11,7 @@ var fragmentSchema = new Schema({
 		type:String
 	},
 	domains:{
-		type:String
+		type: [String]
 	},
 	date:{
 		type: Date, 
