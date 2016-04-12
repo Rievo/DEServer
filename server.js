@@ -880,14 +880,18 @@ router.post("/fragments", function(req, res){
 
 	var name = req.body.name;
 	var content = req.body.content;
-	var dateString = req.body.dateString;
+	
+	var extends = req.body.extends;
 	var domains = req.body.domains;
+	var contentKeys = req.body.contentKeys;
 
 	if(name != null) {
 		var newFragment = Fragment({
 			name: name,
 			content: content,
-			domains: domains
+			domains: domains,
+			extends: extends,
+			contentKeys: contentKeys
 		});
 
 		newFragment.save(function(err){
