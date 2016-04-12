@@ -46,6 +46,7 @@ var Palette = require("./models/palette");
 var Diagram = require("./models/diagram");
 var Ecore = require("./models/ecore");
 var Json = require("./models/json");
+var Fragment = require("./models/fragment")
 
 var database = "diagrameditor";
 
@@ -842,6 +843,78 @@ router.get("/jsonTest", function(req, res){
 	sendJsonResponse(res,  {code:200, msg:"Diagram removed"});
 });
 
+
+
+//========================================================
+//=================    BORRAR ANGEL   ===================
+//========================================================
+//Get all diagrams
+router.get("/fragments", function(req, res){
+	console.log("GET /fragments")
+
+	Fragment.find({}, function(err, fragments){
+		if(err){
+			console.log("Error: "+err);
+		}
+
+		if(req.query.json ==="true"){
+			sendJsonResponse(res, fragments);
+		}else{
+			//Cargar la web
+			//endResponse(res);
+			res.render("fragmentList", {fragmentList:fragments});
+		}
+	});
+});
+
+
+router.post("/fragments", function(req, res){
+	//a partir del ? vienen los parámetros
+	console.log("POST /fragments");
+
+	
+	console.log(req.body);
+	console.log("name: "+req.body.name);
+	console.log("content: "+req.body.content);
+	console.log("domains: " + req.body.domains)
+
+	var name = req.body.name;
+	var content = req.body.content;
+	var dateString = req.body.dateString;
+	var domains = req.body.domains;
+
+	if(name != null) {
+		var newFragment = Fragment({
+			name: name,
+			content: content,
+			domains: domains
+		});
+
+		newFragment.save(function(err){
+			if(err){
+				console.log("Adding error: " + err);
+				if(req.query.json === "true"){
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}
+			}else{
+				console.log("Fragment added");
+				//todo bien, devolvemos añadido correctamente
+				if(req.query.json === "true"){
+					sendJsonResponse(res, {code:200, msg:"Fragment added properly"});
+				}else{
+					//res.redirect("");
+					endResponse(res);
+				}
+			}
+		});
+	}else{
+		endResponse(res);
+	}
+});
+
 //========================================================
 //=================    Default route   ===================
 //========================================================
@@ -855,6 +928,7 @@ router.get("*", function(req, res){
 
 
 app.use(router);
+
 
 
 
