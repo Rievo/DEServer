@@ -954,14 +954,14 @@ router.post("/datatypes", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	
-	var ext = req.body.extends;
+	var ext = req.body.extend;
 	var contentKeys = req.body.contentKeys;
 
 	if(name != null) {
 		var newDataType = DataType({
 			name: name,
 			content: content,
-			extends: ext,
+			extend: ext,
 			contentKeys: contentKeys
 		});
 
