@@ -12,7 +12,27 @@ var fragmentSchema = new Schema({
 	},
 	domains:{
 		type:String
-	}
+	},
+	date:{
+		type: Date, 
+		default: Date.now },
+
+	extends:{
+		type: [String]
+	},
+	contentKeys:[
+		{
+				name: {
+					type: String
+				},
+				type:{
+					type: String
+				},
+				options:{
+					options: String
+				}
+		}
+	]
 });
 
 Fragment = mongoose.model("Fragment", fragmentSchema);
