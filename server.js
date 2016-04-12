@@ -925,7 +925,7 @@ router.post("/fragments", function(req, res){
 router.get("/datatypes", function(req, res){
 	console.log("GET /datatypes")
 
-	Fragment.find({}, function(err, datatypes){
+	DataType.find({}, function(err, datatypes){
 		if(err){
 			console.log("Error: "+err);
 		}
