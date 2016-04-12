@@ -30,7 +30,7 @@ var fragmentSchema = new Schema({
 					type: String
 				},
 				options:{
-					options: String
+					type: String
 				}
 		}
 	]
