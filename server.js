@@ -871,10 +871,6 @@ router.get("/fragments", function(req, res){
 //Remove fragments
 router.delete("/fragments", function(req, res){
 	console.log("DELETE /fragments");
-
-	
-
-
 			Fragment.remove({}, function(err){
 				if(err){
 					//Error on removal
@@ -895,7 +891,6 @@ router.delete("/fragments", function(req, res){
 					}
 				}
 			});
-
 	
 });
 
@@ -951,7 +946,7 @@ router.post("/fragments", function(req, res){
 });
 
 
-//Get all diagrams
+//Get all datatypes
 router.get("/datatypes", function(req, res){
 	console.log("GET /datatypes")
 
@@ -970,6 +965,31 @@ router.get("/datatypes", function(req, res){
 	});
 });
 
+//Remove fragments
+router.delete("/datatypes", function(req, res){
+	console.log("DELETE /datatypes");
+			DataType.remove({}, function(err){
+				if(err){
+					//Error on removal
+					if(req.query.json === "true"){
+						sendJsonError(res, {code: 302, msg: err});
+					}else{
+						//Load error page
+						endResponse(res);
+					}
+				}else{
+					//Removing has work
+					if(req.query.json === "true"){
+						console.log("Datatypes removed")
+						sendJsonResponse(res, {code:200, msg:"Fragments removed"});
+					}else{
+						//Load web
+						endResponse(res);
+					}
+				}
+			});
+	
+});
 
 router.post("/datatypes", function(req, res){
 	//a partir del ? vienen los parámetros
