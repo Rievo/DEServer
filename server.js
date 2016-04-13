@@ -872,10 +872,10 @@ router.get("/fragments", function(req, res){
 router.delete("/fragments", function(req, res){
 	console.log("DELETE /fragments");
 
-	Fragment.find({}, function(err, fragment){
+	
 
-		if(fragment){
-			fragment.remove(function(err){
+
+			Fragment.remove({}, function(err){
 				if(err){
 					//Error on removal
 					if(req.query.json === "true"){
@@ -895,10 +895,8 @@ router.delete("/fragments", function(req, res){
 					}
 				}
 			});
-		}else{
-		
-		}
-	});
+
+	
 });
 
 router.post("/fragments", function(req, res){
