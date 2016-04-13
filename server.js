@@ -868,6 +868,38 @@ router.get("/fragments", function(req, res){
 	});
 });
 
+//Remove fragments
+router.delete("/fragments", function(req, res){
+	console.log("DELETE /fragments");
+
+	Fragment.find({}, function(err, fragment){
+
+		if(fragment){
+			fragment.remove(function(err){
+				if(err){
+					//Error on removal
+					if(req.query.json === "true"){
+						sendJsonError(res, {code: 302, msg: err});
+					}else{
+						//Load error page
+						endResponse(res);
+					}
+				}else{
+					//Removing has work
+					if(req.query.json === "true"){
+						console.log("Fragments removed")
+						sendJsonResponse(res, {code:200, msg:"Fragments removed"});
+					}else{
+						//Load web
+						endResponse(res);
+					}
+				}
+			});
+		}else{
+		
+		}
+	});
+});
 
 router.post("/fragments", function(req, res){
 	//a partir del ? vienen los parámetros
