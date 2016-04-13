@@ -981,7 +981,7 @@ router.delete("/datatypes", function(req, res){
 					//Removing has work
 					if(req.query.json === "true"){
 						console.log("Datatypes removed")
-						sendJsonResponse(res, {code:200, msg:"Fragments removed"});
+						sendJsonResponse(res, {code:200, msg:"datatypes removed"});
 					}else{
 						//Load web
 						endResponse(res);
