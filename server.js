@@ -47,8 +47,7 @@ var Diagram = require("./models/diagram");
 var Ecore = require("./models/ecore");
 var Json = require("./models/json");
 var Fragment = require("./models/fragment");
-var DataType = require("./models/datatype")
-var User = require("./models/user");
+var DataType = require("./models/datatype");
 
 var database = "diagrameditor";
 

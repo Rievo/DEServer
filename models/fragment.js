@@ -1,6 +1,25 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
+
+//USER
+
+var userSchema = new Schema({
+	name: {  
+		type:String,
+		required:true,
+		unique:true
+	},
+	pass: {
+		type:String
+	}
+});
+
+
+// FRAGMENT
+User = mongoose.model("User", userSchema);
+module.exports = User;
+
 var fragmentSchema = new Schema({
 	name: {  
 		type:String,
@@ -33,9 +52,14 @@ var fragmentSchema = new Schema({
 					type: String
 				}
 		}
-	]
+	],
+	owner: {
+		type: User
+	}
 });
 
 Fragment = mongoose.model("Fragment", fragmentSchema);
 module.exports = Fragment;
+
+
 
