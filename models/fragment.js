@@ -49,13 +49,13 @@ var fragmentSchema = new Schema({
 					type: String
 				},
 				options:{
-					type: Schema.ObjectId,
-					ref: "User"
+					type: String
 				}
 		}
 	],
 	owner: {
-		type: User
+		type: Schema.ObjectId,
+        ref: 'User'
 	}
 });
 
