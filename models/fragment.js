@@ -49,7 +49,8 @@ var fragmentSchema = new Schema({
 					type: String
 				},
 				options:{
-					type: String
+					type: Schema.ObjectId,
+					ref: "User"
 				}
 		}
 	],
