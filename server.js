@@ -48,6 +48,7 @@ var Ecore = require("./models/ecore");
 var Json = require("./models/json");
 var Fragment = require("./models/fragment");
 var DataType = require("./models/datatype")
+var User = require("./models/user");
 
 var database = "diagrameditor";
 
@@ -945,6 +946,103 @@ router.post("/fragments", function(req, res){
 	}
 });
 
+
+//---------------
+//  Users
+//---------------
+router.get("/users", function(req, res){
+	console.log("GET /users")
+
+	User.find({}, function(err, users){
+		if(err){
+			console.log("Error: "+err);
+		}
+		console.log("Returning users")
+		if(req.query.json ==="true"){
+			sendJsonResponse(res, users);
+		}else{
+			//Cargar la web
+			endResponse(res);
+			//res.render("fragmentList", {fragmentList:datatypes});
+		}
+	});
+});
+
+router.post("/users", function(req, res){
+
+	console.log("POST /users");
+
+	
+	console.log(req.body);
+	console.log("name: "+req.body.name);
+	console.log("pass: "+req.body.pass);
+
+
+	var name = req.body.name;
+	var pass = req.body.pass;
+	
+
+	if(name != null) {
+		var newUser = User({
+			name: name,
+			pass: pass
+		});
+
+		newUser.save(function(err){
+			if(err){
+				console.log("Adding error: " + err);
+				if(req.query.json === "true"){
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}
+			}else{
+				console.log("User added");
+				//todo bien, devolvemos añadido correctamente
+				if(req.query.json === "true"){
+					sendJsonResponse(res, {code:200, msg:"User added properly"});
+				}else{
+					//res.redirect("");
+					endResponse(res);
+				}
+			}
+		});
+	}else{
+		endResponse(res);
+	}
+});
+
+//Remove users
+router.delete("/users", function(req, res){
+	console.log("DELETE /users");
+			User.remove({}, function(err){
+				if(err){
+					//Error on removal
+					if(req.query.json === "true"){
+						sendJsonError(res, {code: 302, msg: err});
+					}else{
+						//Load error page
+						endResponse(res);
+					}
+				}else{
+					//Removing has work
+					if(req.query.json === "true"){
+						console.log("Users removed")
+						sendJsonResponse(res, {code:200, msg:"users removed"});
+					}else{
+						//Load web
+						endResponse(res);
+					}
+				}
+			});
+	
+});
+
+
+//---------------
+//  Datatypes
+//---------------
 
 //Get all datatypes
 router.get("/datatypes", function(req, res){
