@@ -1,5 +1,6 @@
 body{
-  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(173,171,173,1) 100%); /* Standard syntax */
+  /*background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(173,171,173,1) 100%); /* Standard syntax */
+  background-color: rgba(255,0,255,0.5);
 }
 
 a{
@@ -12,4 +13,5 @@ h1{
 	 font-family:Georgia,serif;
 	color:#4E443C;
 	font-variant: small-caps; text-transform: none; font-weight: 100; margin-bottom: 0;
+	align-content: center;
 }

@@ -1,16 +1,18 @@
+
 <!DOCTYPE html>
 <html>
-<title>W3.CSS</title>
+<title>DSL-Comet</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+<link rel="stylesheet" href="https://diagrameditorserver.herokuapp.com/style.css">
 <style>
 .mySlides {display:none}
-.w3-left, .w3-right, .w3-badge {cursor:pointer}
-.w3-badge {height:13px;width:13px;padding:0}
 </style>
 <body>
 
-<div class="w3-content w3-display-container" style="max-width:400px;max-height: 350">
+<h1>DSL-Comet</h1>
+
+<div class="w3-content" style="max-width:250px;max-height: 200px">
   <img class="mySlides" src="https://diagrameditorserver.herokuapp.com/serverFiles.png" style="width:100%">
   <img class="mySlides" src="https://diagrameditorserver.herokuapp.com/serverDiagrams.png" style="width:100%">
   <img class="mySlides" src="https://diagrameditorserver.herokuapp.com/editorView.png" style="width:100%">
@@ -19,19 +21,27 @@
   <img class="mySlides" src="https://diagrameditorserver.herokuapp.com/noDraggable2.png" style="width:100%">
   <img class="mySlides" src="https://diagrameditorserver.herokuapp.com/searcher.png" style="width:100%">
 
-  <!--  ICONOS DE ABAJO  -->
-  <div class="w3-center w3-section w3-large w3-text-white w3-display-bottomleft" style="width:100%">
-    <div class="w3-left w3-padding-left w3-hover-text-khaki" onclick="plusDivs(-1)">❮</div>
-    <div class="w3-right w3-padding-right w3-hover-text-khaki" onclick="plusDivs(1)">❯</div>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(1)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(2)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(3)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(4)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(5)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(6)"></span>
-    <span class="w3-badge demo w3-border w3-transparent w3-hover-white" onclick="currentDiv(7)"></span>
-  </div>
 </div>
+<br><br><br><br><br><br><br><br><br><br>
+<div class="w3-center">
+  <div class="w3-section">
+    <button class="w3-btn" onclick="plusDivs(-1)">❮ Prev</button>
+    <button class="w3-btn" onclick="plusDivs(1)">Next ❯</button>
+  </div>
+  <button class="w3-btn demo" onclick="currentDiv(1)">1</button> 
+  <button class="w3-btn demo" onclick="currentDiv(2)">2</button> 
+  <button class="w3-btn demo" onclick="currentDiv(3)">3</button> 
+  <button class="w3-btn demo" onclick="currentDiv(4)">4</button> 
+  <button class="w3-btn demo" onclick="currentDiv(5)">5</button> 
+  <button class="w3-btn demo" onclick="currentDiv(6)">6</button> 
+  <button class="w3-btn demo" onclick="currentDiv(7)">7</button> 
+
+</div>
+
+<iframe width="420" height="315"
+src="http://www.youtube.com/embed/XGSy3_Czz8k?autoplay=1">
+</iframe>
+
 
 <script>
 var slideIndex = 1;
@@ -55,12 +65,13 @@ function showDivs(n) {
      x[i].style.display = "none";  
   }
   for (i = 0; i < dots.length; i++) {
-     dots[i].className = dots[i].className.replace(" w3-white", "");
+     dots[i].className = dots[i].className.replace(" w3-red", "");
   }
   x[slideIndex-1].style.display = "block";  
-  dots[slideIndex-1].className += " w3-white";
+  dots[slideIndex-1].className += " w3-red";
 }
 </script>
 
 </body>
 </html> 
+
