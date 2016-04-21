@@ -1069,9 +1069,11 @@ ul.contact li a.icon-rss:before
 .submit-button{
 	color: #555555;
 	background-color: #D1D1D1;
+	float: right;
+	position: relative;
 }
 
-.item{
+.a .item{
 	padding: 0;
 	color: #FF0000;
 	font-size: 11pt;
