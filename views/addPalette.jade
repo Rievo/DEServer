@@ -4,7 +4,7 @@ h1 Add palette
 
 .submit-form
 	form#formUpdateFile(name="addPalete",method="post",action="/palettes")
-		.submit-label Name
+		.submit-label Name  
 		.submit-text-field
 		input#inputName(type="text", placeholder="name", name="name")
 		br
@@ -22,6 +22,7 @@ h2 Stored palettes
 	ul
 		each palette, i in palettelist
 			li
+				#item
 				a(href="/palettes/#{palette.name}") #{palette.name}
 
 	p
