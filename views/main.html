@@ -55,6 +55,11 @@
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
+var myVar = setInterval(myTimer, 3000);
+
+function myTimer() {
+   showDivs(slideIndex);
+}
 
 function plusDivs(n) {
   showDivs(slideIndex += n);
@@ -63,6 +68,8 @@ function plusDivs(n) {
 function currentDiv(n) {
   showDivs(slideIndex = n);
 }
+
+
 
 function showDivs(n) {
   var i;
