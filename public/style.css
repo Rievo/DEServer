@@ -973,7 +973,6 @@ ul.contact li a.icon-rss:before
 	height: 500px;
 	border-collapse: separate;
   	border-spacing: 50px 0;
-  	width: 600px;
 }
 
 #left, #right{
@@ -1017,6 +1016,12 @@ ul.contact li a.icon-rss:before
 }
 
 #videos{
+	align-content: center;
+	margin: 0 auto;
+	width: 500px;
+}
+
+#links{
 	align-content: center;
 	margin: 0 auto;
 	width: 500px;
