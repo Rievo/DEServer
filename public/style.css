@@ -1001,3 +1001,10 @@ ul.contact li a.icon-rss:before
 	z-index: 1000; position:relative;
 	vertical-align: middle;
 }
+
+.mySlides{
+	padding: 10px;
+	vertical-align: middle;
+	margin: 0 auto;
+
+}
