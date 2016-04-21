@@ -1062,6 +1062,8 @@ ul.contact li a.icon-rss:before
 .submit-text-area{
 	font-family: "Helvetica Neue", "Lucida Grande", Helvetica, Arial, Verdana, sans-serif;
 	font-size: 11pt;
+	width: 500px;
+	max-width: 500px;
 }
 
 .submit-button{
@@ -1072,6 +1074,7 @@ ul.contact li a.icon-rss:before
 .item{
 	padding: 0;
 	color: #FF0000;
+	font-size: 11pt;
 }
 /*  ----------------  */
 hr { 
