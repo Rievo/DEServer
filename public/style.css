@@ -29,7 +29,7 @@ body
 {
 	margin: 0px;
 	padding: 0px;
-	background: #2b2b2b;
+	background: #4A4A4A;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 11pt;
 	font-weight: 300;
@@ -38,10 +38,10 @@ body
 
 h1, h2, h3
 {
-	margin: 0;
-	padding: 0;
 	font-weight: 600;
-	color: #454445;
+	color: #919191;
+	text-align: center;
+	width: 100%;
 }
 
 p, ol, ul
@@ -963,4 +963,9 @@ ul.contact li a.icon-rss:before
 .extra2 .ebox2
 {
 	float: right;
+}
+
+#cont{
+	align-content: center;
+	margin: 0 auto;
 }
