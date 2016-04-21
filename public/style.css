@@ -1013,7 +1013,7 @@ ul.contact li a.icon-rss:before
 	margin: 0px auto;
 	display: block;
 	position: relative;
-	
+	display: inline-block;
 }
 
 #videos{
@@ -1033,7 +1033,6 @@ ul.contact li a.icon-rss:before
 	max-height: 200px;
 	margin: 0 auto;
 	vertical-align: middle;
-	display: inline-block;
 }
 
 
