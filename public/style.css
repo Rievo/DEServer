@@ -982,6 +982,7 @@ ul.contact li a.icon-rss:before
 #left{
 	border: 3px solid #000;
 	width: 300px;
+	background-color: #0000FF;
 }
 
 #right{
@@ -1014,6 +1015,7 @@ ul.contact li a.icon-rss:before
 	display: block;
 	position: relative;
 	display: inline-block;
+	background-color: #FF0000;
 }
 
 #videos{
