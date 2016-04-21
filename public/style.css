@@ -968,4 +968,17 @@ ul.contact li a.icon-rss:before
 #cont{
 	align-content: center;
 	margin: 0 auto;
+	display: table;
+}
+
+#left, #right{
+	display: table-cell;
+}
+
+#left{
+	border: 3px solid #000
+}
+
+#right{
+	border: 3px solid #000
 }
