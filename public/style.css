@@ -1010,6 +1010,7 @@ ul.contact li a.icon-rss:before
 .mySlides{
 	padding: 10px;
 	vertical-align: middle;
+	width: 200px;
 	margin: 0px auto;
 	display: block;
 }
@@ -1017,4 +1018,5 @@ ul.contact li a.icon-rss:before
 #videos{
 	align-content: center;
 	margin: 0 auto;
+	width: 500px;
 }
