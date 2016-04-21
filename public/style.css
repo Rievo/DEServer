@@ -969,7 +969,7 @@ ul.contact li a.icon-rss:before
 	align-content: center;
 	margin: 0 auto;
 	display: table;
-	height: 400px;
+	height: 450px;
 	border-collapse: separate;
   	border-spacing: 50px 0;
 }
@@ -1007,4 +1007,5 @@ ul.contact li a.icon-rss:before
 	vertical-align: middle;
 	margin: 0 auto;
 	width: 100%;
+	display: block;
 }
