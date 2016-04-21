@@ -18,12 +18,12 @@ br
 br
 
 .submit-form
-h2 Stored palettes 
-	ul
-		each palette, i in palettelist
-			li
-				.item
-				a(href="/palettes/#{palette.name}") #{palette.name}
+	h2 Stored palettes 
+		ul
+			each palette, i in palettelist
+				li
+					.item
+					a(href="/palettes/#{palette.name}") #{palette.name}
 
-	p
-	a(href="/") Back to index
+		p
+		a(href="/") Back to index
