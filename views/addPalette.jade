@@ -2,18 +2,23 @@ link(rel='stylesheet', href='/style.css', type="text/css")
 	
 h1 Add palette
 
-.videos
-h2 Add Palete
+.submit-form
 	form#formUpdateFile(name="addPalete",method="post",action="/palettes")
+		.submit-label Name
+		.submit-text-field
 		input#inputName(type="text", placeholder="name", name="name")
 		br
+		.submit-text-area
 		textarea#text(name="content", cols="100", rows="20")
 		br
+		.submit-button
 		button#btnSubmit(type="submit") submit
 
+br
+br
 
-.videos
-h2 Showing palettes 
+.submit-form
+h2 Stored palettes 
 	ul
 		each palette, i in palettelist
 			li
