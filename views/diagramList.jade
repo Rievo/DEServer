@@ -16,7 +16,7 @@ h1 Showing Diagrams
 //		button#btnSubmit(type="submit") submit
 
 
-div 
+.submit-form
 	table
 		thead
 			tr:th Diagrams
@@ -24,16 +24,18 @@ div
 			each diagram, i in diagramList
 				tr
 					td
+						.item
 						a(href="/diagrams/#{diagram.name}") #{diagram.name}
 					td
+						.item
 						a(href="/diagrams/#{diagram.name}")
 							img(id='preview', class='input-img', src="https://diagrameditorserver.herokuapp.com/diagrams/"+diagram.name+"/image")
-	//ul
-	//	each diagram, i in diagramList
-	//		li
-	//			a(href="/diagrams/#{diagram.name}") #{diagram.name}
 
 
-
-p
-a(href="/") Back to index
+	p
+	
+	br
+	br
+	br
+	
+	a(href="/") Back to index

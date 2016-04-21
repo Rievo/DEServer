@@ -1,11 +1,14 @@
 link(rel='stylesheet', href='/style.css', type="text/css")
 
-h1 Showing Ecores
+h1 Ecores
 
-div Add Ecore
+.submit-form
 	form#formUpdateFile(name="addEcore",method="post",action="/ecores")
+		.submit-label Name 
+		.submit-text-field
 		input#inputName(type="text", placeholder="name", name="name")
 		br
+			.submit-text-area
 		textarea#text(name="content", cols="100", rows="15")
 		br
 		
@@ -13,14 +16,23 @@ div Add Ecore
 		input#checkbox(name="autogenerate" type='checkbox', checked=true)
 		br
 		br
+			.submit-button
 		button#btnSubmit(type="submit") submit
 
 
-div Showing ecores
+.submit-form
+	h2 Stored ecores
+
 	ul
 		each ecore, i in ecorelist
 			li
+				.item
 				a(href="/ecores/#{ecore.name}") #{ecore.name}
 
 	p
+	
+	br
+	br
+	br
+	
 	a(href="/") Back to index

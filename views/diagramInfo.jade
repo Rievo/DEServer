@@ -1,22 +1,29 @@
-block content
-	link(rel='stylesheet', href='/style.css', type="text/css")
-	h1 Diagram
-	p Name: #{diagram.name}
-
-//form#formRemoveDiagram(name="removeDiagram",method="post",action="/palettes/#{name}/delete")
-//		button#btnSubmit(type="submit") Delete
+link(rel='stylesheet', href='/style.css', type="text/css")
 
 
-//Content
+.submit-form
+	block content
+		h1 Model
+		br
+		.submit-label Name: #{diagram.name}
 
-textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{diagram.content} 
-
-img(id='preview', class='input-img', src="https://diagrameditorserver.herokuapp.com/diagrams/"+diagram.name+"/image")
-
-//Preview
+	//form#formRemoveDiagram(name="removeDiagram",method="post",action="/palettes/#{name}/delete")
+	//		button#btnSubmit(type="submit") Delete
 
 
-br
-a(href="/diagrams") Go to palettes
-br
-a(href="/") Back to index
+	//Content
+
+	.submit-text-area
+	textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{diagram.content} 
+
+
+	.mySlides
+	img(id='preview', class='input-img', src="https://diagrameditorserver.herokuapp.com/diagrams/"+diagram.name+"/image")
+
+	//Preview
+
+
+	br
+	a(href="/diagrams") Go to palettes
+	br
+	a(href="/") Back to index

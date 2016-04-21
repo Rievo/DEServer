@@ -1,18 +1,25 @@
-block content
-	link(rel='stylesheet', href='/style.css', type="text/css")
-	h1 Palette
-	p Name: #{name}
+link(rel='stylesheet', href='/style.css', type="text/css")
 
-form#formRemovePalette(name="removePalette",method="post",action="/palettes/#{name}/delete")
-		button#btnSubmit(type="submit") Delete
+.submit-form
+	block content
+		h1 Palette
+		br
+		.submit-label Name: #{name}
+
+	form#formRemovePalette(name="removePalette",method="post",action="/palettes/#{name}/delete")
+			.submit-button
+			button#btnSubmit(type="submit") Delete
 
 
-//Content
+	//Content
+	.submit-text-area
+	textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
 
-textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
 
+	br
+	br
+	br
 
-br
-a(href="/palettes") Go to palettes
-br
-a(href="/") Back to index
+	a(href="/palettes") Back to palettes
+	br
+	a(href="/") Back to index
