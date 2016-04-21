@@ -969,6 +969,9 @@ ul.contact li a.icon-rss:before
 	align-content: center;
 	margin: 0 auto;
 	display: table;
+	height: 100%;
+	border-collapse: separate;
+  	border-spacing: 50px 0;
 }
 
 #left, #right{
