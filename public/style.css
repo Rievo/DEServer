@@ -973,6 +973,7 @@ ul.contact li a.icon-rss:before
 	height: 500px;
 	border-collapse: separate;
   	border-spacing: 50px 0;
+  	width: 600px;
 }
 
 #left, #right{
@@ -1021,7 +1022,7 @@ ul.contact li a.icon-rss:before
 	width: 500px;
 }
 
-/*hr { 
+hr { 
     display: block;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -1031,4 +1032,4 @@ ul.contact li a.icon-rss:before
     border-style: inset;
     border-width: 1px;
     color: #B8B8B8;
-} */
+}
