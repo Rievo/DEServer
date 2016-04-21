@@ -2,7 +2,8 @@ link(rel='stylesheet', href='/style.css', type="text/css")
 	
 h1 Add palette
 
-div .cont Add Palete
+div Add Palete
+.videos 
 	form#formUpdateFile(name="addPalete",method="post",action="/palettes")
 		input#inputName(type="text", placeholder="name", name="name")
 		br
@@ -12,6 +13,7 @@ div .cont Add Palete
 
 
 div Showing palettes
+.videos 
 	ul
 		each palette, i in palettelist
 			li
