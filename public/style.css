@@ -1013,3 +1013,8 @@ ul.contact li a.icon-rss:before
 	margin: 0px auto;
 	display: block;
 }
+
+#videos{
+	align-content: center;
+	margin: 0 auto;
+}
