@@ -1078,6 +1078,10 @@ ul.contact li a.icon-rss:before
 	color: #FF0000;
 	font-size: 11pt;
 }
+
+.table-row{
+	border: 3px solid #000;
+}
 /*  ----------------  */
 hr { 
     display: block;
