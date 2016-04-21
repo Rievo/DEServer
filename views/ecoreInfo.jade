@@ -1,21 +1,23 @@
-head
-	link(rel='stylesheet', href='/style.css', type="text/css")
-	
-body
+link(rel='stylesheet', href='/style.css', type="text/css")
 
+.submit-form
 	block content
 		h1 Ecore
-		p Name: #{name}
+		br
+		.submit-label Name: #{name}
 
 	form#formRemoveEcore(name="removeEcore",method="post",action="/ecores/#{name}/delete")
+			.submit-button
 			button#btnSubmit(type="submit") Delete
 
 
-
+	.submit-text-area
 	textarea#text(name="content", cols="100", rows="20", disabled="disabled") #{content} 
 
-
 	br
+	br
+	br
+
 	a(href="/ecores") Go to ecores
 	br
 	a(href="/") Back to index
