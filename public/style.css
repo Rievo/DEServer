@@ -1069,7 +1069,7 @@ ul.contact li a.icon-rss:before
 	background-color: #D1D1D1;
 }
 
-#item{
+.item{
 	padding: 0;
 	color: #FF0000;
 }
