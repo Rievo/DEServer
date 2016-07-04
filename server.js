@@ -110,7 +110,7 @@ function endResponse(res){
 router.get("/palettes", function(req, res){
 	console.log("GET /palettes");
 
-	var version = req.params.version;
+	var version = req.query.version;
 
 	if(version == null){ //Todos
 		console.log("GET ALL, version == null");
