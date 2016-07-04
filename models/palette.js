@@ -9,6 +9,10 @@ var paletteSchema = new Schema({
 	},
 	content:{
 		type:String
+	},
+	version:{
+		type:Number,
+		default: -1
 	}
 });
 

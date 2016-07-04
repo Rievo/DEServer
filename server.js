@@ -25,6 +25,10 @@ app.set('view engine', 'jade');
 var pass;
 var user;
 
+//------ GRAPHIC R VERSION ------
+var lastGraphicRVersion = 2;
+//-------------------------------
+
 process.argv.forEach(function (val, index, array) {
 
   if(index == 2){ //User
@@ -106,8 +110,10 @@ function endResponse(res){
 router.get("/palettes", function(req, res){
 	console.log("GET /palettes");
 
-	//if(req.query.json === "true"){
+	var version = req.params.version;
 
+	if(version == null){ //Todos
+		console.log("GET ALL, version == null");
 		Palette.find({}, function(err, palettes){
 			if(err){
 				console.log("Error: "+err);
@@ -122,9 +128,27 @@ router.get("/palettes", function(req, res){
 				});
 			}
 		});
-	//}else{
-	//	
-	//}
+	}else{ //Recupero solo esos
+		console.log("GET /version = version");
+		Palette.find({"version" : version}, function(err, palettes){
+			if(err){
+				console.log("Error: "+err);
+			}
+
+			if(req.query.json ==="true"){
+				sendJsonResponse(res, palettes);
+			}else{
+				//Cargar la web
+				res.render("addPalette",{
+					palettelist:palettes
+				});
+			}
+		});
+	}
+
+
+		
+
 });
 
 
