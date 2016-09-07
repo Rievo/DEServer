@@ -129,7 +129,7 @@ router.get("/palettes", function(req, res){
 			}
 		});
 	}else{ //Recupero solo esos
-		console.log("GET /version = version");
+		console.log("GET /version = "+version);
 		Palette.find({"version" : version}, function(err, palettes){
 			if(err){
 				console.log("Error: "+err);
@@ -553,6 +553,26 @@ router.post("/ecores/:ename/delete", function(req, res){
 //========================================================
 //====================    JSON   =====================
 //========================================================
+
+console.log("GET /jsons/");
+router.get("/jsons", function(req, res){
+	console.log("GET /jsons");
+		Json.find({}, function(err, jsons){
+			if(err){
+				console.log("Error: "+err);
+			}
+
+			//if(req.query.json ==="true"){
+				sendJsonResponse(res, jsons);
+			/*}else{
+				//Cargar la web
+				res.render("ecoreList",{
+					ecorelist:jsons
+				});
+			}*/
+		});
+});
+
 router.get("/jsons/:name", function(req, res){
 	console.log("GET /jsons/", req.params.name.replace(/ /g,''));
 
