@@ -326,6 +326,8 @@ router.post("/ecores", function(req, res){
 
 	var name = req.body.name;
 	var content = req.body.content;
+	var uri = req.body.uri;
+	console.log("URI: "+ uri);
 	var autogenerateGrapicRStr = req.body.autogenerate;
 
 	var generate = false;
