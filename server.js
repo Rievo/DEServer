@@ -174,7 +174,10 @@ router.post("/palettes", function(req, res){
 			version:version
 		});
 
+		console.log(newPalette);
+
 		newPalette.save(function(err){
+			console.log(err);
 			if(err){
 				if(req.query.json === "true"){
 					console.log("Adding error: " + err);
