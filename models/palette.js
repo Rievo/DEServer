@@ -4,8 +4,7 @@ var Schema = mongoose.Schema;
 var paletteSchema = new Schema({
 	name: {  
 		type:String,
-		required:true,
-		unique:true
+		required:true
 	},
 	content:{
 		type:String
@@ -13,6 +12,11 @@ var paletteSchema = new Schema({
 	version:{
 		type:Number,
 		default: -1
+	},
+	ecoreURI:{
+		type:String,
+		unique:true,
+		required:true
 	}
 });
 

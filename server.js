@@ -156,11 +156,13 @@ router.post("/palettes", function(req, res){
 
 	var name = req.body.name;
 	var content = req.body.content;
+	var uri = req.body.uri;
 
 	if(name != null) {
 		var newPalette = Palette({
 			name: name,
-			content: content
+			content: content,
+			ecoreURI: uri
 		});
 
 		newPalette.save(function(err){
