@@ -156,7 +156,10 @@ router.post("/palettes", function(req, res){
 
 	var name = req.body.name;
 	var content = req.body.content;
-	var uri = req.body.uri;
+	var uri = req.body.ecoreURI;
+
+	console.log("/PALETTES");
+	console.log("URI: " + uri);
 
 	if(name != null) {
 		var newPalette = Palette({
