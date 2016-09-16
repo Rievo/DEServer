@@ -157,6 +157,11 @@ router.post("/palettes", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	var uri = req.body.ecoreURI;
+	var version = req.body.version;
+
+	if(version == undefined){
+		version = -1;
+	}
 
 	console.log("/PALETTES");
 	console.log("URI: " + uri);
@@ -165,7 +170,8 @@ router.post("/palettes", function(req, res){
 		var newPalette = Palette({
 			name: name,
 			content: content,
-			ecoreURI: uri
+			ecoreURI: uri,
+			version:version
 		});
 
 		newPalette.save(function(err){
