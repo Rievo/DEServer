@@ -12,7 +12,7 @@ var ecoreSchema = new Schema({
 	URI:{
 		type:String,
 		unique:true,
-		required:true;
+		required:true
 	}
 });
 
