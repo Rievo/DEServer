@@ -327,7 +327,7 @@ router.post("/ecores", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	var uri = req.body.uri;
-	console.log("URI: "+ uri);
+
 	var autogenerateGrapicRStr = req.body.autogenerate;
 
 	var generate = false;
@@ -343,13 +343,14 @@ router.post("/ecores", function(req, res){
 	if(name != null) {
 		var newEcore= Ecore({
 			name: name.replace(/\s+/g, ''),
-			content: content
+			content: content,
+			uri: uri;
 		});
 
 		newEcore.save(function(err){
 			if(err){
+				console.log("Adding error: " + err);
 				if(req.query.json === "true"){
-					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
 				}else{
 					//Cargar la web de error
@@ -361,12 +362,12 @@ router.post("/ecores", function(req, res){
 				writeEcoreFileToFolder(newEcore);
 
 				//parseEcoreToJSON(newEcore);
-
+				/*
 				if(generate == true){
 					parseEcoreToGraphicR(newEcore);
 				}else{
 					console.log("No se ha generado el graphicR")
-				}
+				}*/
 
 				//todo bien, devolvemos añadido correctamente
 				if(req.query.json === "true"){
