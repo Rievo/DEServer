@@ -344,7 +344,7 @@ router.post("/ecores", function(req, res){
 		var newEcore= Ecore({
 			name: name.replace(/\s+/g, ''),
 			content: content,
-			URI: uri;
+			URI: uri
 		});
 
 		newEcore.save(function(err){
