@@ -4,11 +4,15 @@ var Schema = mongoose.Schema;
 var ecoreSchema = new Schema({
 	name: {  
 		type:String,
-		required:true,
-		unique:true
+		required:true
 	},
 	content: {
 		type:String
+	},
+	URI:{
+		type:String,
+		unique:true,
+		required:true;
 	}
 });
 
