@@ -344,13 +344,13 @@ router.post("/ecores", function(req, res){
 		var newEcore= Ecore({
 			name: name.replace(/\s+/g, ''),
 			content: content,
-			URI: uri
+			URI: uri;
 		});
 
 		newEcore.save(function(err){
 			if(err){
-				console.log("Adding error: " + err);
 				if(req.query.json === "true"){
+					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
 				}else{
 					//Cargar la web de error
@@ -359,15 +359,15 @@ router.post("/ecores", function(req, res){
 			}else{
 				console.log("Ecore añadido a la base de datos");
 
-				writeEcoreFileToFolder(newEcore);
+				writeEcoreFileToFolder(newEcore, uri);
 
 				//parseEcoreToJSON(newEcore);
-				/*
+
 				if(generate == true){
 					parseEcoreToGraphicR(newEcore);
 				}else{
 					console.log("No se ha generado el graphicR")
-				}*/
+				}
 
 				//todo bien, devolvemos añadido correctamente
 				if(req.query.json === "true"){
@@ -382,7 +382,7 @@ router.post("/ecores", function(req, res){
 	}
 });
 
-function writeEcoreFileToFolder(ecore){
+function writeEcoreFileToFolder(ecore, uri){
 	
 	var name = path.join(__dirname, "/tmp/"+ecore.name +".ecore");
 
@@ -394,15 +394,16 @@ function writeEcoreFileToFolder(ecore){
 		console.log("vengo de intentar escribir. Err: "+err);
 		if(err){
 			console.log("Error escritura:  "+ err);
+			sendJsonError(res, {code:300, msg:"Error writing ecore file to folder"});
 		}else{
 			console.log("fichero ecore guardado correctamente");
 
-			parseEcoreToJSON(ecore);
+			parseEcoreToJSON(ecore, uri);
 		}
 	});
 }
 
-function parseEcoreToJSON (ecore){
+function parseEcoreToJSON (ecore, uri){
 
 	console.log("Voy a hacer el parsetojson");
 
@@ -416,16 +417,18 @@ function parseEcoreToJSON (ecore){
 		console.log("stderr: " + stderr);
 		if(error){
 			console.log("Error de salida: " + error);
+			sendJsonError(res, {code:300, msg:"JSON JAR returned error " + error});
 		}else{
 			console.log("jsonFile created :D");
 			//Recupero ese json y lo añado a mongodb
-			saveJSONtoMongodb(outFile, ecore.name);
+			saveJSONtoMongodb(outFile, ecore.name, uri);
 		}
 	});
 
 }
 
-function saveJSONtoMongodb(jsonfile, name){
+function saveJSONtoMongodb(jsonfile, name, uri){
+		console.log("URI: " + uri);
 		fs.readFile(jsonfile, 'utf8', function (err,data) {
 		if (err) {
 			return console.log("Error leyendo el json" +err);
@@ -435,7 +438,8 @@ function saveJSONtoMongodb(jsonfile, name){
 		//Si no hay error, lo añado a mongodb
 		var newJson = Json({
 			name: name,
-			content: str
+			content: str,
+			URI:uri
 		});
 
 		newJson.save(function(err){
