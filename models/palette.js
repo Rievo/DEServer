@@ -15,7 +15,8 @@ var paletteSchema = new Schema({
 	},
 	ecoreURI:{
 		type:String,
-		required:true
+		required:true,
+		unique:false
 	}
 });
 
