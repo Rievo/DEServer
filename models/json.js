@@ -11,7 +11,7 @@ var jsonSchema = new Schema({
 	},
 	URI:{
 		type:String,
-		//unique:true,
+		unique:true,
 		required:true
 	}
 });
