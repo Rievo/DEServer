@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var paletteSchema = new Schema({
 	name: {  
 		type:String,
-		required:true
+		required:true,
+		unique:false
 	},
 	content:{
 		type:String
