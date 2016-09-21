@@ -158,6 +158,7 @@ router.post("/palettes", function(req, res){
 	var content = req.body.content;
 	var uri = req.body.ecoreURI;
 	var version = req.body.version;
+	var ext = req.body.extension;
 
 	if(version == undefined){
 		version = -1;
@@ -171,7 +172,8 @@ router.post("/palettes", function(req, res){
 			name: name,
 			content: content,
 			ecoreURI: uri,
-			version:version
+			version:version,
+			extension:ext
 		});
 
 		console.log(newPalette);
@@ -183,12 +185,12 @@ router.post("/palettes", function(req, res){
 					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
 				}else{
-					//Cargar la web de error
+					//Load error web
 					endResponse(res);
 				}
 			}else{
 				console.log("Paleta añadida");
-				//todo bien, devolvemos añadido correctamente
+				//Everything ok
 				if(req.query.json === "true"){
 					sendJsonResponse(res, {code:200, msg:"Palette added properly"});
 				}else{
@@ -700,6 +702,7 @@ router.post("/diagrams", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	var dateString = req.body.dateString;
+	var usedExtension = req.body.extension;
 
 	var imageData = req.body.imageData;
 
@@ -710,7 +713,8 @@ router.post("/diagrams", function(req, res){
 			name: name,
 			content: content,
 			dateString : dateString,
-			imageString : imageData
+			imageString : imageData,
+			paletteExtension:usedExtension
 			//previewImage : {data : imageData, contentType :"image/png"}
 		});
 

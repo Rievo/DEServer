@@ -18,6 +18,9 @@ var paletteSchema = new Schema({
 		type:String,
 		required:true,
 		unique:false
+	},
+	extension:{
+		type:String
 	}
 });
 

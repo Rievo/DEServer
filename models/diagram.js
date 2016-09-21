@@ -15,11 +15,10 @@ var diagramSchema = new Schema({
 	},
 	imageString:{
 		type:String
+	},
+	paletteExtension:{
+		type:String
 	}
-	/*previewImage:{
-		data:Buffer,
-		contentType:String
-	}*/
 });
 
 
