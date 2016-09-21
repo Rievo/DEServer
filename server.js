@@ -702,7 +702,7 @@ router.post("/diagrams", function(req, res){
 	var name = req.body.name;
 	var content = req.body.content;
 	var dateString = req.body.dateString;
-	var usedExtension = req.body.extension;
+	var usedExtension = req.body.paletteExtension;
 
 	var imageData = req.body.imageData;
 
