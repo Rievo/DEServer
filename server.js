@@ -658,7 +658,10 @@ router.get("/jsonbyuri/", function(req, res){
 			//json.content
 			if(req.query.json === "true"){
 				console.log("Devolviendo json")
-				sendJsonResponse(res, {code:200, content:json.content});
+				if(json.content != null)
+					sendJsonResponse(res, {code:200, content:json.content});
+				else
+					sendJsonResponse(res, {code:200, content:"json.content"});
 			}else{
 				//res.redirect("/ecores");
 				endResponse(res);
