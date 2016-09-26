@@ -643,37 +643,43 @@ router.get("/jsons/:name", function(req, res){
 //JSON by uri
 router.get("/jsonbyuri/", function(req, res){
 	
+	console.log("\t/jsonbyuri");
 	//Devuelvo un json con content el contenido del fichero
 
 	if(req.query.uri == null){
-		console.log("req.uri == null");
+		console.log("\treq.uri == null");
 		if(req.query.json === "true"){
 			sendJsonError(res, {code: 305, msg:"uri is null"});
 		}else{
 			endResponse(res);
 		}
 	}else{
+		console.log("\treq.uri is ok: " + req.uri);
 		Json.findOne({URI:req.query.uri}, function(err, json){
-		if(!err){
-			//json.content
-			if(req.query.json === "true"){
-				console.log("Devolviendo json")
-				if(json.content != null)
-					sendJsonResponse(res, {code:200, content:json.content});
-				else
-					sendJsonResponse(res, {code:200, content:"json.content"});
+			console.log("\tERROR: " + error);
+			if(json != null)
+				console.log("\tFound one: " + json);
+			if(!err){
+				console.log("\tThere is no error");
+				if(req.query.json === "true"){
+					console.log("\tDevolviendo json")
+					if(json.content != null)
+						sendJsonResponse(res, {code:200, content:json.content});
+					else
+						sendJsonResponse(res, {code:200, content:"json.content"});
+				}else{
+					//res.redirect("/ecores");
+					endResponse(res);
+				}
 			}else{
-				//res.redirect("/ecores");
-				endResponse(res);
+				console.log("\tThere is an error")
+				if(req.query.json === "true"){
+					sendJsonError(res, {code: 301, msg:"JSON doesn't exist"});
+				}else{
+					//Load web
+					endResponse(res);
+				}
 			}
-		}else{
-			if(req.query.json === "true"){
-				sendJsonError(res, {code: 301, msg:"JSON doesn't exist"});
-			}else{
-				//Load web
-				endResponse(res);
-			}
-		}
 	});
 	}
 });
