@@ -179,8 +179,9 @@ router.post("/palettes", function(req, res){
 		console.log(newPalette);
 
 		newPalette.save(function(err){
-			console.log(err);
+			console.log("Error añadiendo paleta: " +err);
 			if(err){
+				console.log("Efectivamente hay un error: " +err);
 				if(req.query.json === "true"){
 					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
@@ -362,8 +363,10 @@ router.post("/ecores", function(req, res){
 		generate = false;
 	}
 	
-
+	console.log("Check name");
 	if(name != null) {
+		console.log("Name != null = " + name);
+
 		var newEcore= Ecore({
 			name: name.replace(/\s+/g, ''),
 			content: content,
@@ -383,7 +386,8 @@ router.post("/ecores", function(req, res){
 					endResponse(res);
 				}
 			}else{
-				console.log("Ecore añadido a la base de datos");
+				console.log("Ecore añadido a la base de datos. Let's write to folder");
+
 
 				writeEcoreFileToFolder(newEcore, uri);
 
@@ -405,6 +409,16 @@ router.post("/ecores", function(req, res){
 
 			}
 		});
+	}else{
+		console.log("name = null");
+		console.log("return error, name = null");
+				if(req.query.json === "true"){
+					console.log("Adding error: " + err);
+					sendJsonError(res, {code:300, msg:err});
+				}else{
+					//Cargar la web de error
+					endResponse(res);
+				}
 	}
 });
 
