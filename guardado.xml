@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<diagrameditor>
+	<graphicr>
+		<graphicR:GraphicRepresentation xmi:version="2.0"xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:graphicR="http://mondo.org/graphic_representation/1.0.3">
+			<allGraphicRepresentation extension="wt">
+				<listRepresentations xsi:type="graphicR:RepresentationDD">
+					<root>
+						<anEClass href="UseCases.ecore#//Diagram"/>
+					</root>
+					<layers xsi:type="graphicR:DefaultLayer" name="DefaultLayer">
+						<elements xsi:type="graphicR:Node">
+							<anEClass href="UseCases.ecore#//UseCase"/>
+							<diag_palette palette_name="Create UseCase"/>
+							<containerReference href="UseCases.ecore#//Diagram/cases"/>
+							<node_elements>
+								<linkPalette palette_name="Create link refUseCase">
+									<anEReference href="UseCases.ecore#//UseCase/refUseCase"/>
+									<color xsi:type="graphicR:SiriusSystemColors" name="(null)"  />
+								</linkPalette>
+							</node_elements>
+								
+							<node_shape xsi:type="graphicR:Ellipse">
+								<color xsi:type="graphicR:SiriusSystemColors" name="white"  />
+								<borderColor xsi:type="graphicR:SiriusSystemColors" name="black"  />
+							</node_shape>
+						</elements>
+						<elements xsi:type="graphicR:Node">
+							<anEClass href="UseCases.ecore#//Actor"/>
+							<diag_palette palette_name="Create Actor"/>
+							<containerReference href="UseCases.ecore#//Diagram/actors"/>
+							<node_elements>
+								<linkPalette palette_name="Create link refUseCase">
+									<anEReference href="UseCases.ecore#//Actor/refUseCase"/>
+									<color xsi:type="graphicR:SiriusSystemColors" name="(null)"  />
+								</linkPalette>
+								<linkPalette palette_name="Create link super">
+									<anEReference href="UseCases.ecore#//Actor/super"/>
+									<color xsi:type="graphicR:SiriusSystemColors" name="(null)"  />
+								</linkPalette>
+							</node_elements>
+							<node_shape xsi:type="graphicR:Diamond">
+								<color xsi:type="graphicR:SiriusSystemColors" name="purple"  />
+								<borderColor xsi:type="graphicR:SiriusSystemColors" name="black"  />
+							</node_shape>
+						</elements>
+					</layers>
+				</listRepresentations>
+			</allGraphicRepresentation>
+		</graphicR:GraphicRepresentation>
+	</graphicr>
+
+	<diagram version="2.0">
+		<palette_name name="testusecases" />
+		<subpalette name="testusecases" />
+		<nodes>
+			<node x="175.7143" y="405" id="5477424" color="white" type="graphicR:Node" width="65" height="65" className="UseCase">
+				<attribute name="name" type="EString" current_value="" />
+				<attribute name="description" type="EString" current_value="" />
+			</node>
+			<node x="230" y="193.5714" id="4540576" color="white" type="graphicR:Node" width="65" height="65" className="UseCase">
+				<attribute name="name" type="EString" current_value="" />
+				<attribute name="description" type="EString" current_value="" />
+			</node>
+			<node x="136.4286" y="272.1429" id="4541536" color="purple" type="graphicR:Node" width="65" height="65" className="Actor">
+				<attribute name="name" type="EString" current_value="" />
+				<attribute name="description" type="EString" current_value="" />
+			</node>
+			<node x="323.5714" y="330.7143" id="4546768" color="purple" type="graphicR:Node" width="65" height="65" className="Actor">
+				<attribute name="name" type="EString" current_value="" />
+				<attribute name="description" type="EString" current_value="" />
+			</node>
+		</nodes>
+		<edges>
+			<edge source="4541536" target="4546768" className="Actor" />
+		</edges>
+	</diagram>
+	<metamodel>
+		
+	</metamodel>
+</diagrameditor>

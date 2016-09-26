@@ -339,10 +339,17 @@ router.get("/ecores", function(req, res){
 
 router.post("/ecores", function(req, res){
 	//a partir del ? vienen los parámetros
+	console.log("\n\n POST /ecores");
 
 	var name = req.body.name;
 	var content = req.body.content;
 	var uri = req.body.uri;
+
+	console.log("-----");
+	console.log("name: " + name);
+	console.log("content: " + content);
+	console.log("uri " + uri);
+	console.log("-----");
 
 	var autogenerateGrapicRStr = req.body.autogenerate;
 
@@ -363,8 +370,11 @@ router.post("/ecores", function(req, res){
 			URI: uri
 		});
 
+
 		newEcore.save(function(err){
+			console.log("SAVE ecore. Error: " +error);
 			if(err){
+				console.log("return error");
 				if(req.query.json === "true"){
 					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
