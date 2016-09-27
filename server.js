@@ -375,7 +375,9 @@ router.post("/ecores", function(req, res){
 
 
 		newEcore.save(function(err){
+			
 			console.log("SAVE ecore. Error: " +error);
+
 			if(err){
 				console.log("return error");
 				if(req.query.json === "true"){
@@ -660,7 +662,7 @@ router.get("/jsonbyuri/", function(req, res){
 	console.log("\t/jsonbyuri");
 	//Devuelvo un json con content el contenido del fichero
 
-	if(req.query.uri == null){
+	if(req.query.uri == undefined){
 		console.log("\treq.uri == null");
 		if(req.query.json === "true"){
 			sendJsonError(res, {code: 305, msg:"uri is null"});
@@ -670,7 +672,7 @@ router.get("/jsonbyuri/", function(req, res){
 	}else{
 		console.log("\treq.uri is ok: " + req.uri);
 		Json.findOne({URI:req.query.uri}, function(err, json){
-			console.log("\tERROR: " + error);
+			console.log("\tERROR: " + err);
 			if(json != null)
 				console.log("\tFound one: " + json);
 			if(!err){
