@@ -347,6 +347,8 @@ router.post("/ecores", function(req, res){
 	var uri = req.body.uri;
 
 	console.log("-----");
+	console.log(req.body);
+	console.log("-----");
 	console.log("name: " + name);
 	console.log("content: " + content);
 	console.log("uri " + uri);
@@ -357,6 +359,7 @@ router.post("/ecores", function(req, res){
 	var generate = false;
 
 
+	console.log("Should generate graphicR?");
 	if(autogenerateGrapicRStr === "on"){
 		generate = true;
 	}else{
@@ -364,7 +367,7 @@ router.post("/ecores", function(req, res){
 	}
 	
 	console.log("Check name");
-	if(name != null) {
+	if(name != undefined) {
 		console.log("Name != null = " + name);
 
 		var newEcore= Ecore({
@@ -412,8 +415,8 @@ router.post("/ecores", function(req, res){
 			}
 		});
 	}else{
-		console.log("name = null");
-		console.log("return error, name = null");
+		console.log("name = undefined");
+		console.log("return error, name = undefined");
 				if(req.query.json === "true"){
 					console.log("Adding error: " + err);
 					sendJsonError(res, {code:300, msg:err});
