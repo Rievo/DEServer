@@ -376,10 +376,12 @@ router.post("/ecores", function(req, res){
 			URI: uri
 		});
 
+		console.log("newEcore:\n");
+		console.log(newEcore);
 
 		newEcore.save(function(err){
 			
-			console.log("SAVE ecore. Error: " +error);
+			console.log("SAVE ecore. Error: " +err);
 
 			if(err){
 				console.log("return error");
