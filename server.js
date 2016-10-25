@@ -161,7 +161,7 @@ router.post("/palettes", function(req, res){
 	var ext = req.body.extension;
 
 	if(version == undefined){
-		version = -1;
+		version = 2;
 	}
 
 	console.log("/PALETTES");
